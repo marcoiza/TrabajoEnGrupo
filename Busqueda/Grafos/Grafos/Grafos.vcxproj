@@ -139,11 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Digrafica.cpp" />
     <ClCompile Include="Grafica.cpp" />
     <ClCompile Include="Aplicativo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Digrafica.h" />
     <ClInclude Include="Grafica.h" />
+    <ClInclude Include="Lista.h" />
+    <ClInclude Include="NodoLista.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

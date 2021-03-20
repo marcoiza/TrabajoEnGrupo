@@ -2,11 +2,15 @@
 #include <iostream>
 
 #include "Grafica.h"
+#include "Digrafica.h"
 
 int main()
 {
-    Grafica<int> gr;
+    /*Grafica<int> gr;
     gr.Lee();
-    gr.Prim();
+    gr.Prim();*/
+    Digrafica<int> dri;
+    dri.Lee();
+    dri.buscarAmplitud();
 }
 
