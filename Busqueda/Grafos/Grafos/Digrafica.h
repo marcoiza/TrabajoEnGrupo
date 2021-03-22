@@ -180,8 +180,7 @@ Lista<T> Digrafica<T>::VerticesAdyacentes(int VertiDato)
 template <class T>
 int Digrafica<T>::buscarProfundo(int NivelProf)
 {
-	int Indice, VisitaAux[MAX], Resp = 1;
-	bool EstadoFinal = false;
+	int Indice, VisitaAux[MAX], Resp = 1, EstadoFinal = 0;
 	Lista<T> Visitado, NoVisitado, ListaAux;
 	T VertiX;
 	for (Indice = 0; Indice < NumVer; Indice++)
@@ -208,7 +207,7 @@ int Digrafica<T>::buscarProfundo(int NivelProf)
 					if (BuscaVertice(VertiX) == NumVer-1)
 					{
 					Visitado.insertaFinal(VertiX);
-					EstadoFinal = true;
+					EstadoFinal = 1;
 					}
 			}
 			Indice++;
@@ -227,8 +226,8 @@ int Digrafica<T>::buscarAmplitud()
 	int Indice, EstadoFinal = 0, VisitaAux[MAX], Resp = 1;
 	Lista<T> NoVisitado, Visitado, ListaAux;
 	T VertiX;
-		for (Indice = 0; Indice < NumVer; Indice++)
-			VisitaAux[Indice] = 0;
+	for (Indice = 0; Indice < NumVer; Indice++)
+		VisitaAux[Indice] = 0;
 	NoVisitado.insertaFinal(Vertices[0]);
 	VisitaAux[0] = 1;
 	while (!NoVisitado.listaVacia() && !EstadoFinal)		//cambios
@@ -255,12 +254,12 @@ int Digrafica<T>::buscarAmplitud()
 			}
 		}
 	}
-		if (EstadoFinal)
-		{
-			Visitado.imprimir();
-			return 1;
-		}
-		else
-			Resp = 0;
+	if (EstadoFinal)
+	{
+		Visitado.imprimir();
+		return 1;
+	}
+	else
+		Resp = 0;
 	return Resp;
 }
