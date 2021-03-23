@@ -42,7 +42,7 @@ void Lista<T>::imprimir() {
 	std::cout << "\nDatos de la Lista\n\n";
 	while (aux) {
 		cont++;
-		std::cout << cont << aux->getInfo() << std::endl;
+		std::cout << cont << "._  " << aux->getInfo() << std::endl;
 		aux = aux->getSiguiente();
 	}
 }
@@ -127,6 +127,7 @@ T Lista<T>::eliminar() {
 	if (primero)
 	{
 		aux = primero;
+		Resp = aux->getInfo();			//cambios del metodo 
 		primero = primero->getSiguiente();
 		delete (aux);
 	}

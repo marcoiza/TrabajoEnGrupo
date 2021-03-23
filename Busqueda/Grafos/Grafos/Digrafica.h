@@ -256,6 +256,9 @@ int Digrafica<T>::buscarAmplitud()
 	}
 	if (EstadoFinal)
 	{
+		std::cout << "No visitado\n";
+		NoVisitado.imprimir();
+		std::cout << "Visitado\n";
 		Visitado.imprimir();
 		return 1;
 	}

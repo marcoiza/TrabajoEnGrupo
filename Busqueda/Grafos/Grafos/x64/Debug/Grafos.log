@@ -1,6 +1,4 @@
 ﻿  Aplicativo.cpp
 C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Busqueda\Grafos\Grafos\Digrafica.h(7,1): warning C4005: 'MAX': redefinición de macro
 C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Busqueda\Grafos\Grafos\Grafica.h(5): message : vea la definición anterior de 'MAX'
-  Digrafica.cpp
-  Generando código...
   Grafos.vcxproj -> C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Busqueda\Grafos\x64\Debug\Grafos.exe

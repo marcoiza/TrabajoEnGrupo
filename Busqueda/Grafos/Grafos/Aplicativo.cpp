@@ -12,5 +12,6 @@ int main()
     Digrafica<int> dri;
     dri.Lee();
     dri.buscarAmplitud();
+    dri.buscarProfundo(2);
 }
 
