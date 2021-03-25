@@ -48,32 +48,32 @@ void Operaciones::resolverCuadro(CuadroMagico cuadro) {
 
 void Operaciones::inicializarMatriz(CuadroMagico cuadro) {
 	int i, n=cuadro.getTamano();
-	this->matriz = new int* [n];
+	this->matriz = (int**)malloc(n * sizeof(int*));
 	for (i = 0; i < n; i++)
-		this->matriz[i] = new int[n];
+		*(matriz + i) = (int*)malloc(n * sizeof(int));
 }
 
 void Operaciones::encerarMatriz(CuadroMagico cuadro) {
-	for (int i = 0; i < cuadro.getTamano(); i++) {
-		for (int j = 0; j < cuadro.getTamano(); j++) {
-			//*(*(matriz + i) + j) = 0;
-			this->matriz[i][j] = 0;
+	int n = cuadro.getTamano();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			*(*(this->matriz + i) + j) = 0;
 		}
 	}
 }
 
 void Operaciones::ubicarNumero(CuadroMagico cuadro) {
-	int k, n, m, e;
+	int rep, tam, nuevoValMatriz, valMatriz;
 	if ((numeros.size() > 0) && validarPosicion(cuadro)) {
-		n = numeros.size();
-		k = 0;
+		tam = numeros.size();
+		rep = 0;
 		do {
-			m = numeros.front();
+			nuevoValMatriz = numeros.front();
 			numeros.pop();
-			if ((e = *(*(matriz + fila) + columna)) != 0)
-				numeros.push(e);
-			*(*(matriz + fila) + columna) = m;
-			++k;
+			if ((valMatriz = *(*(matriz + fila) + columna)) != 0)
+				numeros.push(valMatriz);
+			*(*(matriz + fila) + columna) = nuevoValMatriz;
+			++rep;
 			if (cuadroValido(cuadro)) {
 				if (numeros.size() == 0) {
 					hecho = true;
@@ -85,7 +85,7 @@ void Operaciones::ubicarNumero(CuadroMagico cuadro) {
 					ubicarNumero(cuadro);
 				}
 			}
-		} while (k < n && !hecho);
+		} while (rep < tam && !hecho);
 
 		if (!hecho) { //backtrack
 			numeros.push(*(*(matriz + fila) + columna));
@@ -101,9 +101,10 @@ bool Operaciones::validarPosicion(CuadroMagico cuadro) {
 }
 
 void Operaciones::mostrarCuadro(CuadroMagico cuadro) {
-	std::cout << "Numero magico: " << cuadro.getTamano() << std::endl;
-	for (int i = 0; i < cuadro.getTamano(); i++) {
-		for (int j = 0; j < cuadro.getTamano(); j++) {
+	std::cout << "Numero magico: " << cuadro.getNumeroMagico() << std::endl;
+	int n = cuadro.getTamano();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
 			std::cout << " " <<*(*(matriz + i) + j);
 		}
 		std::cout << "\n";
@@ -127,40 +128,40 @@ bool Operaciones::indiceYSumaValido(CuadroMagico cuadro, int indice, int suma) {
 }
 
 bool Operaciones::validarHorizontal(CuadroMagico cuadro, int fila) {
-	int columnaAux = 0, aux1, aux2 = 0;
-	while (columnaAux < cuadro.getTamano() && (aux1 = *(*(matriz + fila) + columnaAux)) != 0) {
-		aux2 += aux1;
+	int columnaAux = 0, valMatriz, sumaLocal = 0, n = cuadro.getTamano();
+	while (columnaAux < n && (valMatriz = *(*(matriz + fila) + columnaAux)) != 0) {
+		sumaLocal += valMatriz;
 		++columnaAux;
 	}
-	return indiceYSumaValido(cuadro, columnaAux, aux2);
+	return indiceYSumaValido(cuadro, columnaAux, sumaLocal);
 }
 
 bool Operaciones::validarVertical(CuadroMagico cuadro, int columna) {
-	int filaAux = 0, aux1, aux2 = 0;
-	while (filaAux < cuadro.getTamano() && (aux1 = *(*(matriz + filaAux) + columna)) != 0) {
-		aux2 += aux1;
+	int filaAux = 0, valMatriz, sumaLocal = 0, n = cuadro.getTamano();
+	while (filaAux < n && (valMatriz = *(*(matriz + filaAux) + columna)) != 0) {
+		sumaLocal += valMatriz;
 		++filaAux;
 	}
-	return indiceYSumaValido(cuadro, filaAux, aux2);
+	return indiceYSumaValido(cuadro, filaAux, sumaLocal);
 }
 
 bool Operaciones::validarDiagonal1(CuadroMagico cuadro) {
-	int filaAux = 0, aux1, aux2 = 0;
-	while (filaAux < cuadro.getTamano() && (aux1 = *(*(matriz + filaAux) + filaAux)) != 0) {
-		aux2 += aux1;
+	int filaAux = 0, valMatriz, sumaLocal = 0, n = cuadro.getTamano();
+	while (filaAux < n && (valMatriz = *(*(matriz + filaAux) + filaAux)) != 0) {
+		sumaLocal += valMatriz;
 		++filaAux;
 	}
-	return indiceYSumaValido(cuadro, filaAux, aux2);
+	return indiceYSumaValido(cuadro, filaAux, sumaLocal);
 }
 
 bool Operaciones::validarDiagonal2(CuadroMagico cuadro) {
-	int filaAux = 0, columnaAux = 2, aux1, aux2 = 0;
-	while ((filaAux < cuadro.getTamano()) && (columnaAux >= 0) && ((aux1 = *(*(matriz + filaAux) + columnaAux)) != 0)) {
-		aux2 += aux1;
+	int filaAux = 0, columnaAux = cuadro.getTamano() - 1, valMatriz, sumaLocal = 0, n = cuadro.getTamano();
+	while ((filaAux < n) && (columnaAux >= 0) && ((valMatriz = *(*(matriz + filaAux) + columnaAux)) != 0)) {
+		sumaLocal += valMatriz;
 		++filaAux;
 		--columnaAux;
 	}
-	return indiceYSumaValido(cuadro, filaAux, aux2);
+	return indiceYSumaValido(cuadro, filaAux, sumaLocal);
 }
 
 void Operaciones::sigPosicion(CuadroMagico cuadro) {
