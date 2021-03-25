@@ -1,3 +1,11 @@
+/*********************************************
+*  UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE   *
+*  Grafos               				     *
+*  Autores: Kevin Chuquimarca, Marco Iza     *
+*  Fecha de creacion: 19/03/2021             *
+*  Fecha de modificacion: 24/03/2021         *
+*  Resolucion del triangulo de Pascal        *
+*********************************************/
 
 #include <iostream>
 
@@ -6,12 +14,12 @@
 
 int main()
 {
-    /*Grafica<int> gr;
-    gr.Lee();
-    gr.Prim();*/
     Digrafica<int> dri;
-    dri.Lee();
-    dri.Imprime(0);
-    dri.buscarAmplitud(1);
+    dri.insertar();
+    dri.imprimirGrafica(0);
+    std::cout << "\nRecorrido en Amplitud\n";
+    dri.buscarAmplitud(2);
+    std::cout << "\nRecorrido en Profundidad\n";
+    dri.buscarProfundidad(2);
 }
 

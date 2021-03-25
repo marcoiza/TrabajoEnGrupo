@@ -12,7 +12,7 @@ private:
 	int NumVer, Vertices[MAX];
 public:
 	Grafica();
-	void Lee();
+	void insertar();
 	void Imprime();
 	void Prim();
 	void Kruskal();
@@ -32,7 +32,7 @@ Grafica<T>::Grafica()
 }
 
 template <class T>
-void Grafica<T>::Lee()
+void Grafica<T>::insertar()
 {
 	int Aristas, Costo, Ind1, Origen, Destino;
 	std::cout << "\n\nIngrese total de vértices de la gráfica : ";
