@@ -11,7 +11,7 @@ int main()
     gr.Prim();*/
     Digrafica<int> dri;
     dri.Lee();
-    dri.buscarAmplitud();
-    dri.buscarProfundo(2);
+    dri.Imprime(0);
+    dri.buscarAmplitud(1);
 }
 

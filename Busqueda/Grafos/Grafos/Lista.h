@@ -20,7 +20,8 @@ public:
 	NodoLista<T>* buscar(int);
 	NodoLista<T>* BuscaDesordenada(T);
 	int tamanio();
-	T eliminar();
+	T eliminarUltimo();
+	T eliminarPrimero();
 	bool listaVacia();
 };
 
@@ -121,7 +122,7 @@ int Lista<T>::tamanio() {
 }
 
 template <class T>
-T Lista<T>::eliminar() {
+T Lista<T>::eliminarPrimero() {
 	NodoLista<T>* aux;
 	int Resp = 1;
 	if (primero)
@@ -157,4 +158,34 @@ bool Lista<T>::listaVacia() {
 		return true;
 	}
 	return false;
+}
+
+template <class T>
+T Lista<T>::eliminarUltimo()
+{
+	NodoLista<T>* anterior, * aux;
+	int Resp = 1;
+	if (primero)
+	{
+		if (!primero->getSiguiente)
+		{
+			delete (primero);
+			primero = NULL; 
+		}
+		else
+		{
+			aux = primero;
+			while (aux->getSiguiente())
+			{
+				anterior = aux;
+				Resp = aux->getInfo();
+				aux = aux->getSiguiente();
+			}
+			anterior->setSiguiente(NULL);
+			delete (aux);
+		}
+	}
+	else
+		Resp = 0;
+	return Resp;
 }

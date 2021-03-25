@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Lista.h"
+#include "Vertice.h"
 
 #define MAX 10
 
@@ -24,8 +25,11 @@ public:
 	void Dijkstra();
 	int BuscaVertice(T);
 	Lista<T>VerticesAdyacentes(int);
-	int buscarAmplitud();
-	int buscarProfundo(int);
+	void buscarAmplitud(T);
+	void cambiarDato(Vertice<T>&, Lista<Vertice<T>>&);
+	void iniciarListaVertice(Lista<Vertice<T>> &);
+	T expansion(Lista<Vertice<T>>, Lista<T>, T);
+	void imprimirListaParientes(Lista<Vertice<T>>);
 };
 
 template <class T>
@@ -55,9 +59,10 @@ void Digrafica<T>::Lee()
 	int NumArcos, Indice, Origen, Destino;
 	std::cout << "\n\n Ingrese número de vértices de la gráfica dirigida : ";
 	std::cin >> NumVer;
-	std::cout << "\n\n Ingrese los nombres de los vértices de la gráfica dirigida : ";
-		for (Indice = 0; Indice < NumVer; Indice++) 
-			std::cin >> Vertices[Indice];
+	for (Indice = 0; Indice < NumVer; Indice++) {
+		std::cout << "\n\n Ingrese el vertice : ";
+		std::cin >> Vertices[Indice];
+	}
 	std::cout << "\n\n Total de aristas de la gráfica dirigida : ";
 	std::cin >> NumArcos;
 	Indice = 0;
@@ -84,7 +89,6 @@ void Digrafica<T>::Imprime(int Opc)
 		std::cout << "\n\n Matriz de Adyacencia o de Costos : \n\n";
 		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
 		{
-			std::cout << Vertices[Ind1] << ": ";
 			for (Ind2 = 0; Ind2 < NumVer; Ind2++)
 				std::cout << MatAdy[Ind1][Ind2] << "\t";
 			std::cout << std::endl;
@@ -162,107 +166,89 @@ int Digrafica<T>::BuscaVertice(T VertiDato)
 	while (Indice < NumVer && Vertices[Indice] != VertiDato)
 		Indice++;
 	if (Indice < NumVer)
-		Resp = Indice;
+		Resp = VertiDato;
 	return Resp;
 }
 
 template <class T>
-Lista<T> Digrafica<T>::VerticesAdyacentes(int VertiDato)
+Lista<T> Digrafica<T>::VerticesAdyacentes(int vi)
 {
-	int Indice;
 	Lista<T> Adyacentes;
-	for (Indice = 0; Indice < NumVer; Indice++)
-		if (MatAdy[VertiDato][Indice] != 0)
-			Adyacentes.insertaFinal(Vertices[Indice]);
+	for (int i = 0; i < NumVer; i++)
+		if (MatAdy[vi][i] != 0 && MatAdy[vi][i] != 999) {
+			Adyacentes.insertaFinal(Vertices[i]);
+		}
 	return Adyacentes;
 }
 
-template <class T>
-int Digrafica<T>::buscarProfundo(int NivelProf)
-{
-	int Indice, VisitaAux[MAX], Resp = 1, EstadoFinal = 0;
-	Lista<T> Visitado, NoVisitado, ListaAux;
-	T VertiX;
-	for (Indice = 0; Indice < NumVer; Indice++)
-		VisitaAux[Indice] = 0;
-	NoVisitado.insertaFinal(Vertices[0]);
-	VisitaAux[0] = 1;
-	Indice = 0;
-	while (!NoVisitado.listaVacia() && !EstadoFinal)
-	{
-		VertiX = NoVisitado.eliminar();
-		if (!Visitado.BuscaDesordenada(VertiX) && Indice < NivelProf)
-		{
-			Visitado.insertaFinal(VertiX);
-			ListaAux = VerticesAdyacentes(BuscaVertice(VertiX));
-			while (!ListaAux.listaVacia() && !EstadoFinal)
-			{
-				VertiX = ListaAux.eliminar();
-				if (BuscaVertice(VertiX) != NumVer-1 && !VisitaAux[BuscaVertice(VertiX)])
-				{
-					NoVisitado.insertaInicio(VertiX);
-					VisitaAux[BuscaVertice(VertiX)] = 1;
-				}
-				else
-					if (BuscaVertice(VertiX) == NumVer-1)
-					{
-					Visitado.insertaFinal(VertiX);
-					EstadoFinal = 1;
-					}
-			}
-			Indice++;
+template<class T>
+void Digrafica<T>::buscarAmplitud(T vi) {
+	int pos = 0, posAux = 0;
+	Lista<Vertice<T>> vrts;
+	Lista<T> adyacentes, adyacentesAux;
+	Vertice<T> vrt;
+	iniciarListaVertice(vrts);
+	pos = BuscaVertice(vi);
+	adyacentes = VerticesAdyacentes(pos - 1);
+	do {
+		while(!adyacentes.listaVacia()){
+			posAux = adyacentes.eliminarPrimero();
+			vrt = Vertice<T>(posAux, pos, true);
+			cambiarDato(vrt, vrts);
+			adyacentesAux.insertaFinal(posAux);
+			
 		}
+		pos = adyacentesAux.eliminarPrimero();
+		adyacentes = VerticesAdyacentes(pos - 1);
+	} while (!adyacentesAux.listaVacia());
+	imprimirListaParientes(vrts);
+}
+
+template<class T>
+void Digrafica<T>::imprimirListaParientes(Lista<Vertice<T>> vrts) {
+	int cont = 0;
+	NodoLista<Vertice<T>>* aux = new NodoLista<Vertice<T>>;
+	Vertice<T> vrt;
+	aux = vrts.regresaPrimero();
+	std::cout << "\nDatos de la Lista\n\n";
+	while (aux) {
+		cont++;
+		vrt = aux->getInfo();
+		std::cout << cont << "._  " << vrt.getDato() << "  " << vrt.getPariente() << "  " << vrt.getVisitado() << std::endl;
+		aux = aux->getSiguiente();
 	}
-	if (EstadoFinal)
-		Visitado.imprimir();
-	else
-		Resp = 0;
-	return Resp;
+}
+
+template<class T>
+T Digrafica<T>::expansion(Lista<Vertice<T>> vrts, Lista<T> adyacentes, T vi) {
+	adyacentes = VerticesAdyacentes(vi);
+	if(adyacentes.listaVacia()){
+		
+	}
+	else{
+		expansion(vrts, adyacentes, vi);
+	}
 }
 
 template <class T>
-int Digrafica<T>::buscarAmplitud()
-{
-	int Indice, EstadoFinal = 0, VisitaAux[MAX], Resp = 1;
-	Lista<T> NoVisitado, Visitado, ListaAux;
-	T VertiX;
-	for (Indice = 0; Indice < NumVer; Indice++)
-		VisitaAux[Indice] = 0;
-	NoVisitado.insertaFinal(Vertices[0]);
-	VisitaAux[0] = 1;
-	while (!NoVisitado.listaVacia() && !EstadoFinal)		//cambios
-	{
-		VertiX = NoVisitado.eliminar();			//implementar
-		if (!Visitado.BuscaDesordenada(VertiX))
-		{
-			Visitado.insertaFinal(VertiX);
-			ListaAux = VerticesAdyacentes(BuscaVertice(VertiX));
-			while (!ListaAux.listaVacia() && !EstadoFinal)
-			{
-				VertiX = ListaAux.eliminar();		//implementar
-				if (BuscaVertice(VertiX) != NumVer-1 && !VisitaAux[BuscaVertice(VertiX)])
-				{
-					NoVisitado.insertaFinal(VertiX);
-					VisitaAux[BuscaVertice(VertiX)] = 1;
-				}
-				else
-					if (BuscaVertice(VertiX) == NumVer - 1)
-					{
-						Visitado.insertaFinal(VertiX);
-						EstadoFinal = 1;
-					}
-			}
+void Digrafica<T>::iniciarListaVertice(Lista<Vertice<T>> &vrts) {
+	Vertice<T> vrt;
+	for (int i = 0; i < NumVer; i++) {
+		vrt = Vertice<int>(Vertices[i], NULL, false);
+		vrts.insertaFinal(vrt);
+	}
+}
+
+template <class T>
+void Digrafica<T>::cambiarDato(Vertice<T> &vrt, Lista<Vertice<T>> &vrts) {
+	NodoLista<Vertice<T>>* aux;
+	Vertice<T> vrtAux;
+	aux = vrts.regresaPrimero();
+	while (aux) {
+		vrtAux = aux->getInfo();
+		if (vrt.getDato() == vrtAux.getDato()) {
+			aux->setInfo(vrt);
 		}
+		aux = aux->getSiguiente();
 	}
-	if (EstadoFinal)
-	{
-		std::cout << "No visitado\n";
-		NoVisitado.imprimir();
-		std::cout << "Visitado\n";
-		Visitado.imprimir();
-		return 1;
-	}
-	else
-		Resp = 0;
-	return Resp;
 }
