@@ -14,12 +14,19 @@
 
 int main()
 {
-    Digrafica<int> dri;
+    /*Digrafica<int> dri;
     dri.insertar();
     dri.imprimirGrafica(0);
-    std::cout << "\nRecorrido en Amplitud\n";
-    dri.buscarAmplitud(2);
-    std::cout << "\nRecorrido en Profundidad\n";
-    dri.buscarProfundidad(2);
+    std::cout << "\nBusqueda en Amplitud\n";
+    dri.buscarAmplitud(1);
+    std::cout << "\nBusqueda en Profundidad\n";
+    dri.buscarProfundidad(1);*/
+    Grafica<int> ndri;
+    ndri.insertar();
+    ndri.Imprime();
+    std::cout << "\nBusqueda en Amplitud\n";
+    ndri.buscarAmplitud(1);
+    std::cout << "\nBusqueda en Profundidad\n";
+    ndri.buscarProfundidad(1);
 }
 

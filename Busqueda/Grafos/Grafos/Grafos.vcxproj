@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Digrafica.h" />
     <ClInclude Include="Grafica.h" />
+    <ClInclude Include="Grafo.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="MDinamicaNew.h" />
     <ClInclude Include="NodoLista.h" />
