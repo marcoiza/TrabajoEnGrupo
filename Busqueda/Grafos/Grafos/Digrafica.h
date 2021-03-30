@@ -14,16 +14,16 @@ template <class T>
 class Digrafica
 {
 private:
-	T** MatAdy, ** VerInt, ** CerTran;
-	int NumVer;
-	T* Vertices, *DistMin;
+	T** matAdy, ** verInt, ** cerTran;
+	int numVer;
+	T* vertices, *distMin;
 	MDinamicaNew md;
 	Vector<T> vec, vec2;
 public:
 	Digrafica();
 	void reservarMemoria();
 	void insertar();
-	void imprimirGrafica(int);
+	void imprimir(int);
 	void Warshall();
 	void Floyd();
 	void FloydVerInt();
@@ -45,27 +45,27 @@ Digrafica<T>::Digrafica()
 	reservarMemoria();
 	for (int Ind1 = 0; Ind1 < MAX; Ind1++)
 	{
-		*(DistMin + Ind1) = 0;
+		*(distMin + Ind1) = 0;
 		for (int Ind2 = 0; Ind2 < MAX; Ind2++)
 		{
 			if (Ind1 != Ind2)
-				*(*(MatAdy + Ind1) + Ind2) = 999;
+				*(*(matAdy + Ind1) + Ind2) = 999;
 			else
-				*(*(MatAdy + Ind1) + Ind2) = 0;
-			*(*(CerTran + Ind1) + Ind2) = 0;
-			*(*(VerInt + Ind1) + Ind2) = 0;
+				*(*(matAdy + Ind1) + Ind2) = 0;
+			*(*(cerTran + Ind1) + Ind2) = 0;
+			*(*(verInt + Ind1) + Ind2) = 0;
 		}
 	}
-	NumVer = 0;
+	numVer = 0;
 }
 
 template <class T>
 void Digrafica<T>::reservarMemoria() {
-	MatAdy = md.reservar_m(MatAdy, MAX);
-	CerTran = md.reservar_m(CerTran, MAX);
-	VerInt = md.reservar_m(VerInt, MAX);
-	Vertices = vec.reservar(MAX);
-	DistMin = vec2.reservar(MAX);
+	matAdy = md.reservar_m(matAdy, MAX);
+	cerTran = md.reservar_m(cerTran, MAX);
+	verInt = md.reservar_m(verInt, MAX);
+	vertices = vec.reservar(MAX);
+	distMin = vec2.reservar(MAX);
 }
 
 template <class T>
@@ -73,10 +73,10 @@ void Digrafica<T>::insertar()
 {
 	int NumArcos, Indice, Origen, Destino;
 	std::cout << "\n\n Ingrese numero de vertices de la grafica dirigida : ";
-	std::cin >> NumVer;
-	for (Indice = 0; Indice < NumVer; Indice++) {
+	std::cin >> numVer;
+	for (Indice = 0; Indice < numVer; Indice++) {
 		std::cout << "\n\n Ingrese el vertice : ";
-		std::cin >> *(Vertices + Indice);
+		std::cin >> *(vertices + Indice);
 	}
 	std::cout << "\n\n Ingrese el numero de aristas de la grafica : ";
 	std::cin >> NumArcos;
@@ -88,13 +88,13 @@ void Digrafica<T>::insertar()
 		std::cout << "\n\n Ingrese vertice destino : ";
 		std::cin >> Destino;
 		std::cout << "\n\n Distancia de origen a destino : ";
-		std::cin >> *(*(MatAdy + Origen - 1) + Destino - 1);
+		std::cin >> *(*(matAdy + Origen - 1) + Destino - 1);
 		Indice++;
 	}
 }
 
 template <class T>
-void Digrafica<T>::imprimirGrafica(int Opc)
+void Digrafica<T>::imprimir(int Opc)
 {
 	int Ind1, Ind2;
 	switch (Opc)
@@ -102,46 +102,46 @@ void Digrafica<T>::imprimirGrafica(int Opc)
 
 	case 0: 
 		std::cout << "\n\n Matriz de Adyacencia o de Costos : \n\n";
-		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+		for (Ind1 = 0; Ind1 < numVer; Ind1++)
 		{
-			for (Ind2 = 0; Ind2 < NumVer; Ind2++)
-				std::cout << *(*(MatAdy + Ind1) + Ind2) << "\t";
+			for (Ind2 = 0; Ind2 < numVer; Ind2++)
+				std::cout << *(*(matAdy + Ind1) + Ind2) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 1: 
 		std::cout << "\n\n Cerradura Transitiva de la Matriz de Adyacencia : " << std::endl;
-		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+		for (Ind1 = 0; Ind1 < numVer; Ind1++)
 		{
-			std::cout << *(Vertices + Ind1) << ": ";
-			for (Ind2 = 0; Ind2 < NumVer; Ind2++)
-				std::cout << *(*(CerTran + Ind1) + Ind2) << "\t";
+			std::cout << *(vertices + Ind1) << ": ";
+			for (Ind2 = 0; Ind2 < numVer; Ind2++)
+				std::cout << *(*(cerTran + Ind1) + Ind2) << "\t";
 				std::cout << std::endl;
 		}
 		break;
 	case 2: 
 		std::cout << "\n\n Matriz de Distancias Mínimas : " << std::endl;
-		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+		for (Ind1 = 0; Ind1 < numVer; Ind1++)
 		{
-			std::cout << *(Vertices + Ind1) << ": ";
-			for (Ind2 = 0; Ind2 < NumVer; Ind2++)
-				std::cout << *(*(MatAdy + Ind1) + Ind2) << "\t";
+			std::cout << *(vertices + Ind1) << ": ";
+			for (Ind2 = 0; Ind2 < numVer; Ind2++)
+				std::cout << *(*(matAdy + Ind1) + Ind2) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 3: 
 		std::cout << "\n\n Vértices Intermedios para lograr distancias mínimas : " << std::endl;
-		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+		for (Ind1 = 0; Ind1 < numVer; Ind1++)
 		{
-			for (Ind2 = 0; Ind2 < NumVer; Ind2++)
-				std::cout << *(*(VerInt + Ind1) + Ind2) << "\t";
+			for (Ind2 = 0; Ind2 < numVer; Ind2++)
+				std::cout << *(*(verInt + Ind1) + Ind2) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 4: 
-		std::cout << "\n\n Distancias mínimas a partir del vértice : " << Vertices[0] << "\n\n";
-		for (Ind1 = 0; Ind1 < NumVer; Ind1++)
-			std::cout << " " << *(DistMin + Ind1) << "\t" << std::endl;
+		std::cout << "\n\n Distancias mínimas a partir del vértice : " << vertices[0] << "\n\n";
+		for (Ind1 = 0; Ind1 < numVer; Ind1++)
+			std::cout << " " << *(distMin + Ind1) << "\t" << std::endl;
 		break;
 	default: break;
 	}
@@ -178,9 +178,9 @@ template <class T>
 int Digrafica<T>::buscaVertice(T VertiDato)
 { 
 	int Indice = 0, Resp = -1;
-	while (Indice < NumVer && *(Vertices + Indice) != VertiDato)
+	while (Indice < numVer && *(vertices + Indice) != VertiDato)
 		Indice++;
-	if (Indice < NumVer)
+	if (Indice < numVer)
 		Resp = VertiDato;
 	return Resp;
 }
@@ -190,9 +190,9 @@ Lista<T> Digrafica<T>::verticesAdyacentes(int vi)
 {
 	Lista<T> Adyacentes;
 	if (vi >= 0) {
-		for (int i = 0; i < NumVer; i++)
-			if (*(*(MatAdy + vi) + i) != 0 && *(*(MatAdy + vi) + i) != 999) {
-				Adyacentes.insertaFinal(*(Vertices + i));
+		for (int i = 0; i < numVer; i++)
+			if (*(*(matAdy + vi) + i) != 0 && *(*(matAdy + vi) + i) != 999) {
+				Adyacentes.insertaFinal(*(vertices + i));
 			}
 	}
 	return Adyacentes;
@@ -239,8 +239,8 @@ void Digrafica<T>::imprimirListaParientes(Lista<Vertice<T>> vrts) {
 template <class T>
 void Digrafica<T>::iniciarListaVertice(Lista<Vertice<T>> &vrts) {
 	Vertice<T> vrt;
-	for (int i = 0; i < NumVer; i++) {
-		vrt = Vertice<int>(*(Vertices + i), 0, false);
+	for (int i = 0; i < numVer; i++) {
+		vrt = Vertice<int>(*(vertices + i), 0, false);
 		vrts.insertaFinal(vrt);
 	}
 }
@@ -262,15 +262,15 @@ void Digrafica<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>> &vrts) {
 template <class T>
 void Digrafica<T>::buscarProfundidad(int vi) {
 	Lista<Vertice<T>> vrts;
-	Vertice<T> vrt = Vertice<T>(vi, 0, false);
 	iniciarListaVertice(vrts);
-	buscarBactraking(vrts, Lista<T>(), vrt);
+	Vertice<T> vrt = Vertice<T>(vi, 0, true);
 	cambiarDato(vrt, vrts);
+	buscarBactraking(vrts, Lista<T>(), vrt);
 	imprimirListaParientes(vrts);
 }
 
 template<class T>
-void Digrafica<T>::buscarBactraking(Lista<Vertice<T>> &vrts, Lista<T> adyacentes, Vertice<T> vrt) {
+void Digrafica<T>::buscarBactraking(Lista<Vertice<T>>& vrts, Lista<T> adyacentes, Vertice<T> vrt) {
 	vrt.setDato(buscaVertice(vrt.getDato()));
 	adyacentes = verticesAdyacentes(vrt.getDato() - 1);
 	if (!adyacentes.listaVacia()) {
@@ -280,7 +280,7 @@ void Digrafica<T>::buscarBactraking(Lista<Vertice<T>> &vrts, Lista<T> adyacentes
 			if (!vrts.buscar(vrt.getDato())->getInfo().getVisitado()) {
 				vrt.setVisitado(true);
 				cambiarDato(vrt, vrts);
-				buscarBactraking(vrts, adyacentes, vrt);
+				buscarBactraking(vrts, Lista<T>(), vrt);
 			}
 		}
 	}
@@ -288,9 +288,9 @@ void Digrafica<T>::buscarBactraking(Lista<Vertice<T>> &vrts, Lista<T> adyacentes
 
 template<class T>
 Digrafica<T>::~Digrafica() {
-	md.liberar(MatAdy, MAX);
-	md.liberar(CerTran, MAX);
-	md.liberar(VerInt, MAX);
-	delete[] Vertices;
-	delete[] DistMin;
+	md.liberar(matAdy, MAX);
+	md.liberar(cerTran, MAX);
+	md.liberar(verInt, MAX);
+	delete[] vertices;
+	delete[] distMin;
 }

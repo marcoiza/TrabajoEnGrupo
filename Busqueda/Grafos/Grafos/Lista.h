@@ -124,7 +124,7 @@ int Lista<T>::tamanio() {
 template <class T>
 T Lista<T>::eliminarPrimero() {
 	NodoLista<T>* aux;
-	int Resp = 1;
+	int Resp = - 1;
 	if (primero)
 	{
 		aux = primero;
@@ -133,7 +133,7 @@ T Lista<T>::eliminarPrimero() {
 		delete (aux);
 	}
 	else
-		Resp = 0;
+		Resp;
 	return Resp;
 }
 
@@ -164,7 +164,7 @@ template <class T>
 T Lista<T>::eliminarUltimo()
 {
 	NodoLista<T>* anterior, * aux;
-	int Resp = 1;
+	int Resp = - 1;
 	if (primero)
 	{
 		if (!primero->getSiguiente)
@@ -186,6 +186,6 @@ T Lista<T>::eliminarUltimo()
 		}
 	}
 	else
-		Resp = 0;
+		Resp;
 	return Resp;
 }

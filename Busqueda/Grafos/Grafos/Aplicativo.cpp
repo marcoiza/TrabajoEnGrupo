@@ -16,17 +16,22 @@ int main()
 {
     /*Digrafica<int> dri;
     dri.insertar();
-    dri.imprimirGrafica(0);
+    dri.imprimir(0);
     std::cout << "\nBusqueda en Amplitud\n";
     dri.buscarAmplitud(1);
     std::cout << "\nBusqueda en Profundidad\n";
     dri.buscarProfundidad(1);*/
     Grafica<int> ndri;
     ndri.insertar();
-    ndri.Imprime();
-    std::cout << "\nBusqueda en Amplitud\n";
-    ndri.buscarAmplitud(1);
-    std::cout << "\nBusqueda en Profundidad\n";
-    ndri.buscarProfundidad(1);
+    ndri.imprimir();
+    int aux = 0;
+    do{
+        std::cout << "\nIngrese el vertice: ";
+        std::cin >> aux;
+        std::cout << "\nBusqueda en Amplitud\n";
+        ndri.buscarAmplitud(aux);
+        std::cout << "\nBusqueda en Profundidad\n";
+        ndri.buscarProfundidad(aux);
+    } while (aux != 10);
 }
 

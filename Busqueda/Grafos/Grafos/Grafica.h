@@ -13,15 +13,15 @@ template <class T>
 class Grafica
 {
 private:
-	T** MatAdy;
-	int NumVer,* Vertices;
+	T** matAdy;
+	int numVer,* vertices;
 	MDinamicaNew md;
 	Vector<T> vec;
 public:
 	Grafica();
 	void insertar();
 	void reservarMemoria();
-	void Imprime();
+	void imprimir();
 	void Prim();
 	void Kruskal();
 
@@ -43,24 +43,24 @@ Grafica<T>::Grafica()
 	for (int Ind1 = 0; Ind1 < MAX; Ind1++)
 		for (int Ind2 = 0; Ind2 < MAX; Ind2++)
 			if (Ind1 != Ind2)
-				*(*(MatAdy + Ind1) + Ind2) = 999;
+				*(*(matAdy + Ind1) + Ind2) = 999;
 			else
-				*(*(MatAdy + Ind1) + Ind2) = 0;
-	NumVer = 0;
+				*(*(matAdy + Ind1) + Ind2) = 0;
+	numVer = 0;
 }
 
 template <class T>
 void Grafica<T>::reservarMemoria() {
-	MatAdy = md.reservar_m(MatAdy, MAX);
-	Vertices = vec.reservar(MAX);
+	matAdy = md.reservar_m(matAdy, MAX);
+	vertices = vec.reservar(MAX);
 }
 
 template <class T>
-void Grafica<T>::Imprime() {
-	for (int Ind1 = 0; Ind1 < NumVer; Ind1++)
+void Grafica<T>::imprimir() {
+	for (int Ind1 = 0; Ind1 < numVer; Ind1++)
 	{
-		for (int Ind2 = 0; Ind2 < NumVer; Ind2++)
-			std::cout << *(*(MatAdy + Ind1) + Ind2) << "\t";
+		for (int Ind2 = 0; Ind2 < numVer; Ind2++)
+			std::cout << *(*(matAdy + Ind1) + Ind2) << "\t";
 		std::cout << std::endl;
 	}
 }
@@ -70,11 +70,11 @@ void Grafica<T>::insertar()
 {
 	int Aristas, Costo, Ind1, Origen, Destino;
 	std::cout << "\n\nIngrese total de vértices de la gráfica : ";
-	std::cin >> NumVer;
-	for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+	std::cin >> numVer;
+	for (Ind1 = 0; Ind1 < numVer; Ind1++)
 	{
 		std::cout << "\nIngrese el nombre del vértice : ";
-		std::cin >> *(Vertices + Ind1);
+		std::cin >> *(vertices + Ind1);
 	}
 	std::cout << "\n\nIngrese total de aristas de la gráfica : ";
 	std::cin >> Aristas;
@@ -87,8 +87,8 @@ void Grafica<T>::insertar()
 		std::cin >> Destino;
 		std::cout << "\nCosto de ir de " << Origen << " a " << Destino << " : ";
 		std::cin >> Costo;
-		*(*(MatAdy + Origen - 1) + Destino - 1) = Costo;
-		*(*(MatAdy + Destino - 1) + Origen - 1) = Costo;
+		*(*(matAdy + Origen - 1) + Destino - 1) = Costo;
+		*(*(matAdy + Destino - 1) + Origen - 1) = Costo;
 		Ind1++;
 	}
 }
@@ -97,30 +97,30 @@ template <class T>
 void Grafica<T>::Prim()
 {
 	int MCosto[MAX], VerAux[MAX], Ind1, Ind2, VerMen, MenCos;
-	for (Ind1 = 0; Ind1 < NumVer; Ind1++)
+	for (Ind1 = 0; Ind1 < numVer; Ind1++)
 	{
-		MCosto[Ind1] = MatAdy[0][Ind1];
+		MCosto[Ind1] = matAdy[0][Ind1];
 		VerAux[Ind1] = 0;
 	}
 	std::cout << "\n\n\nArcos y costos del árbol abarcador de costo mínimo\n\n";
 	std::cout << "\nVértice Vértice Costo \n";
-	for (Ind1 = 0; Ind1 < NumVer - 1; Ind1++)
+	for (Ind1 = 0; Ind1 < numVer - 1; Ind1++)
 	{
 		MenCos = MCosto[1];
 		VerMen = 1;
-		for (Ind2 = 2; Ind2 < NumVer; Ind2++)
+		for (Ind2 = 2; Ind2 < numVer; Ind2++)
 			if (MCosto[Ind2] < MenCos)
 			{
 				MenCos = MCosto[Ind2];
 				VerMen = Ind2;
 			}
-				std::cout << "\n " << Vertices[VerMen] << " - " << Vertices[VerAux[VerMen]]
-				<< " " << MatAdy[VerMen][VerAux[VerMen]];
+				std::cout << "\n " << vertices[VerMen] << " - " << vertices[VerAux[VerMen]]
+				<< " " << matAdy[VerMen][VerAux[VerMen]];
 			MCosto[VerMen] = 1000;
-			for (Ind2 = 1; Ind2 < NumVer; Ind2++)
-				if ((MatAdy[VerMen][Ind2] < MCosto[Ind2]) && MCosto[Ind2] < 1000)
+			for (Ind2 = 1; Ind2 < numVer; Ind2++)
+				if ((matAdy[VerMen][Ind2] < MCosto[Ind2]) && MCosto[Ind2] < 1000)
 				{
-					MCosto[Ind2] = MatAdy[VerMen][Ind2];
+					MCosto[Ind2] = matAdy[VerMen][Ind2];
 					VerAux[Ind2] = VerMen;
 				}
 	}
@@ -136,9 +136,9 @@ template <class T>
 int Grafica<T>::buscaVertice(T VertiDato)
 {
 	int Indice = 0, Resp = -1;
-	while (Indice < NumVer && *(Vertices + Indice) != VertiDato)
+	while (Indice < numVer && *(vertices + Indice) != VertiDato)
 		Indice++;
-	if (Indice < NumVer)
+	if (Indice < numVer)
 		Resp = VertiDato;
 	return Resp;
 }
@@ -148,9 +148,9 @@ Lista<T> Grafica<T>::verticesAdyacentes(int vi)
 {
 	Lista<T> Adyacentes;
 	if (vi >= 0) {
-		for (int i = 0; i < NumVer; i++)
-			if (*(*(MatAdy + vi) + i) != 0 && *(*(MatAdy + vi) + i) != 999) {
-				Adyacentes.insertaFinal(*(Vertices + i));
+		for (int i = 0; i < numVer; i++)
+			if (*(*(matAdy + vi) + i) != 0 && *(*(matAdy + vi) + i) != 999) {
+				Adyacentes.insertaFinal(*(vertices + i));
 			}
 	}
 	return Adyacentes;
@@ -197,8 +197,8 @@ void Grafica<T>::imprimirListaParientes(Lista<Vertice<T>> vrts) {
 template <class T>
 void Grafica<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts) {
 	Vertice<T> vrt;
-	for (int i = 0; i < NumVer; i++) {
-		vrt = Vertice<int>(*(Vertices + i), 0, false);
+	for (int i = 0; i < numVer; i++) {
+		vrt = Vertice<int>(*(vertices + i), 0, false);
 		vrts.insertaFinal(vrt);
 	}
 }
@@ -220,10 +220,10 @@ void Grafica<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) {
 template <class T>
 void Grafica<T>::buscarProfundidad(int vi) {
 	Lista<Vertice<T>> vrts;
-	Vertice<T> vrt = Vertice<T>(vi, 0, false);
 	iniciarListaVertice(vrts);
-	buscarBactraking(vrts, Lista<T>(), vrt);
+	Vertice<T> vrt = Vertice<T>(vi, 0, true);
 	cambiarDato(vrt, vrts);
+	buscarBactraking(vrts, Lista<T>(), vrt);
 	imprimirListaParientes(vrts);
 }
 
@@ -238,7 +238,7 @@ void Grafica<T>::buscarBactraking(Lista<Vertice<T>>& vrts, Lista<T> adyacentes, 
 			if (!vrts.buscar(vrt.getDato())->getInfo().getVisitado()) {
 				vrt.setVisitado(true);
 				cambiarDato(vrt, vrts);
-				buscarBactraking(vrts, adyacentes, vrt);
+				buscarBactraking(vrts, Lista<T>(), vrt);
 			}
 		}
 	}
@@ -246,6 +246,6 @@ void Grafica<T>::buscarBactraking(Lista<Vertice<T>>& vrts, Lista<T> adyacentes, 
 
 template<class T>
 Grafica<T>::~Grafica() {
-	md.liberar(MatAdy, MAX);
-	delete[] Vertices;
+	md.liberar(matAdy, MAX);
+	delete[] vertices;
 }
