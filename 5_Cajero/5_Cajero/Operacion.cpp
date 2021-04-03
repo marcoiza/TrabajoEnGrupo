@@ -22,7 +22,7 @@ void Operacion::operarDinero(int valor, Lista<Registradora>& dolares) {
 		else {
 			valor = contar(valor, dolares.buscar(7));
 		}
-		abrirCerradura(dolares, 3);
+		abrirCerradura(dolares, 20);
 		operarDinero(valor, dolares);
 	}
 }

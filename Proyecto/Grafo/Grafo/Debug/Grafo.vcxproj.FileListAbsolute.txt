@@ -1,0 +1,4 @@
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\Debug\Grafo.vcxprojAssemblyReference.cache
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\Debug\Grafo.VentanaGrafo.resources
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\Debug\Grafo.VentanaInsertar.resources
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\Debug\Grafo.vcxproj.GenerateResource.cache

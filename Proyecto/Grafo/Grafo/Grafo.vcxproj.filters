@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Modelo">
+      <UniqueIdentifier>{f2478a36-a651-4501-ae26-0c1843a257f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vista">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Controlador">
+      <UniqueIdentifier>{a9fd8c23-7291-4dbc-acc6-f215edbd2821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controlador\Archivos de Encabezado">
+      <UniqueIdentifier>{868c3e66-a337-48bb-835c-adf990e02581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controlador\Archivos de Origen">
+      <UniqueIdentifier>{ca37f646-42eb-483c-a13b-90351c3f029e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modelo\Archivos de Origen">
+      <UniqueIdentifier>{d9601581-3f93-4836-9bca-46c6edd2c2fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modelo\Archivos de Encabezado">
+      <UniqueIdentifier>{b4291953-679b-4d06-8c43-03e4c47a9680}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Aplicativo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="MDinamicaNew.cpp">
+      <Filter>Modelo\Archivos de Origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VentanaInsertar.h">
+      <Filter>Vista</Filter>
+    </ClInclude>
+    <ClInclude Include="Grafica.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Digrafica.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MDinamicaNew.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertice.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoLista.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="VentanaGrafo.h">
+      <Filter>Vista</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+﻿  Aplicativo.cpp
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaInsertar.h(243,14): warning C4244: 'argumento': conversión de 'wchar_t' a '_Elem'; posible pérdida de datos
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaInsertar.h(250,21): warning C4018: '<': no coinciden signed/unsigned
+  Aplicativo.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Grafo.vcxproj -> C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Debug\Grafo.exe

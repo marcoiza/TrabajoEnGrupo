@@ -1,4 +1,0 @@
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Recorridos\Recorridos\x64\Debug\Recorridos.Form1.resources
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Recorridos\Recorridos\x64\Debug\Recorridos.MyForm.resources
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Recorridos\Recorridos\x64\Debug\Recorridos.vcxproj.GenerateResource.cache
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Recorridos\Recorridos\x64\Debug\Recorridos.vcxprojAssemblyReference.cache

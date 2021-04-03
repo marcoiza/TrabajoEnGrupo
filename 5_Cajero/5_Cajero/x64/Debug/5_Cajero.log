@@ -1,0 +1,7 @@
+﻿  Aplicativo.cpp
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\5_Cajero\5_Cajero\Aplicativo.cpp(27,41): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  Operacion.cpp
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\5_Cajero\5_Cajero\Operacion.cpp(53,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Registradora.cpp
+  Generando código...
+  5_Cajero.vcxproj -> C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\5_Cajero\x64\Debug\5_Cajero.exe
