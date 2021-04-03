@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{e8830a98-0f0b-49dc-9223-9056d1b4de4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller\Encabezado">
+      <UniqueIdentifier>{80922488-24c7-4b19-99de-f0d15c06c78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller\Origen">
+      <UniqueIdentifier>{a2bbffe0-308c-4324-89fd-b72f4f016280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -29,6 +38,30 @@
     <ClInclude Include="Form1.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="MyForm.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Grafica.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MDinamicaNew.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoLista.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertice.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Digrafica.h">
+      <Filter>Controller\Encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -42,6 +75,12 @@
     </ClCompile>
     <ClCompile Include="Form1.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MDinamicaNew.cpp">
+      <Filter>Controller\Origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

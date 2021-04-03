@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include "Digrafica.h"
+
 using namespace System;
 
 //int main(array<System::String ^> ^args)
