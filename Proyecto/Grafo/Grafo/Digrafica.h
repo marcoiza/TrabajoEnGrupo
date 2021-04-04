@@ -28,17 +28,11 @@ public:
 	int getCoste(int, int);
 	void imprimir(int);
 	int buscaVertice(T);
-	Lista<T>verticesAdyacentes(int);
-	void buscarAmplitud(T);
-	void cambiarDato(Vertice<T>, Lista<Vertice<T>>&);
-	void iniciarListaVertice(Lista<Vertice<T>>&);
-	void buscarProfundidad(int);
-	void buscarBactraking(Lista<Vertice<T>>&, Lista<T>, Vertice<T>);
-	void imprimirListaParientes(Lista<Vertice<T>>);
 	void setNumver(int);
 	void setMatAdy(T**);
 	int getNumver();
 	T** getMatAdy();
+	T* getVertices();
 	~Digrafica();
 };
 
@@ -63,6 +57,7 @@ template <class T>
 void Digrafica<T>::reservarMemoria() {
 	matAdy = md.reservar_m(matAdy, MAX);
 	vertices = vec.reservar(MAX);
+	vec.encerar();
 }
 
 template <class T>
@@ -172,107 +167,6 @@ int Digrafica<T>::buscaVertice(T VertiDato)
 	return Resp;
 }
 
-template <class T>
-Lista<T> Digrafica<T>::verticesAdyacentes(int vi)
-{
-	Lista<T> Adyacentes;
-	if (vi >= 0) {
-		for (int i = 0; i < numVer; i++)
-			if (*(*(matAdy + vi) + i) != 0 && *(*(matAdy + vi) + i) != 999) {
-				Adyacentes.insertaFinal(*(vertices + i));
-			}
-	}
-	return Adyacentes;
-}
-
-template<class T>
-void Digrafica<T>::buscarAmplitud(T vi) {
-	int vf = 0, aux = vi;
-	Lista<Vertice<T>> vrts;
-	Lista<T> adyacentes, adyacentesAux;
-	iniciarListaVertice(vrts);
-	vi = buscaVertice(vi);
-	adyacentes = verticesAdyacentes(vi - 1);
-	do {
-		while (!adyacentes.listaVacia()) {
-			vf = adyacentes.eliminarPrimero();
-			if (!vrts.buscar(vf)->getInfo().getVisitado()) {
-				cambiarDato(Vertice<T>(vf, vi, true), vrts);
-				adyacentesAux.insertaFinal(vf);
-			}
-		}
-		vi = adyacentesAux.eliminarPrimero();
-		adyacentes = verticesAdyacentes(vi - 1);
-	} while (!adyacentesAux.listaVacia() || !adyacentes.listaVacia());
-	cambiarDato(Vertice<T>(aux, 0, false), vrts);
-	imprimirListaParientes(vrts);
-}
-
-template<class T>
-void Digrafica<T>::imprimirListaParientes(Lista<Vertice<T>> vrts) {
-	int cont = 0;
-	NodoLista<Vertice<T>>* aux = new NodoLista<Vertice<T>>;
-	Vertice<T> vrt;
-	aux = vrts.regresaPrimero();
-	std::cout << "\nDatos de la Lista\n\n";
-	while (aux) {
-		cont++;
-		vrt = aux->getInfo();
-		std::cout << cont << "._  " << vrt.getDato() << "  " << vrt.getPariente() << "  " << vrt.getVisitado() << std::endl;
-		aux = aux->getSiguiente();
-	}
-}
-
-template <class T>
-void Digrafica<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts) {
-	Vertice<T> vrt;
-	for (int i = 0; i < numVer; i++) {
-		vrt = Vertice<int>(*(vertices + i), 0, false);
-		vrts.insertaFinal(vrt);
-	}
-}
-
-template <class T>
-void Digrafica<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) {
-	NodoLista<Vertice<T>>* aux;
-	Vertice<T> vrtAux;
-	aux = vrts.regresaPrimero();
-	while (aux) {
-		vrtAux = aux->getInfo();
-		if (vrt.getDato() == vrtAux.getDato()) {
-			aux->setInfo(vrt);
-		}
-		aux = aux->getSiguiente();
-	}
-}
-
-template <class T>
-void Digrafica<T>::buscarProfundidad(int vi) {
-	Lista<Vertice<T>> vrts;
-	iniciarListaVertice(vrts);
-	Vertice<T> vrt = Vertice<T>(vi, 0, true);
-	cambiarDato(vrt, vrts);
-	buscarBactraking(vrts, Lista<T>(), vrt);
-	imprimirListaParientes(vrts);
-}
-
-template<class T>
-void Digrafica<T>::buscarBactraking(Lista<Vertice<T>>& vrts, Lista<T> adyacentes, Vertice<T> vrt) {
-	vrt.setDato(buscaVertice(vrt.getDato()));
-	adyacentes = verticesAdyacentes(vrt.getDato() - 1);
-	if (!adyacentes.listaVacia()) {
-		vrt.setPariente(vrt.getDato());
-		for (int i = 0; !adyacentes.listaVacia(); i++) {
-			vrt.setDato(adyacentes.eliminarPrimero());
-			if (!vrts.buscar(vrt.getDato())->getInfo().getVisitado()) {
-				vrt.setVisitado(true);
-				cambiarDato(vrt, vrts);
-				buscarBactraking(vrts, Lista<T>(), vrt);
-			}
-		}
-	}
-}
-
 template<class T>
 void Digrafica<T>::setNumver(int numVer) {
 	this->numVer = numVer;
@@ -291,6 +185,11 @@ int Digrafica<T>::getNumver() {
 template<class T>
 T** Digrafica<T>::getMatAdy() {
 	return matAdy;
+}
+
+template<class T>
+T* Digrafica<T>::getVertices() {
+	return vertices;
 }
 
 template<class T>

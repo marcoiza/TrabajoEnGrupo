@@ -31,6 +31,15 @@
     <Filter Include="Modelo\Archivos de Encabezado">
       <UniqueIdentifier>{b4291953-679b-4d06-8c43-03e4c47a9680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{8fe254b6-b5e8-4d21-b55c-bf3b36c68617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Archivos de Encabezado">
+      <UniqueIdentifier>{636a13c7-e5c1-47fe-b59a-dc3a09ef77ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Archivos de Origen">
+      <UniqueIdentifier>{fc02edf8-cbab-47c2-860c-ae2a017d98f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Aplicativo.cpp">
@@ -50,23 +59,26 @@
     <ClInclude Include="Digrafica.h">
       <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Lista.h">
-      <Filter>Modelo\Archivos de Encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MDinamicaNew.h">
-      <Filter>Modelo\Archivos de Encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
       <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Vertice.h">
       <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="NodoLista.h">
-      <Filter>Modelo\Archivos de Encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="VentanaGrafo.h">
       <Filter>Vista</Filter>
+    </ClInclude>
+    <ClInclude Include="Recorrido.h">
+      <Filter>Controlador\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Utils\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoLista.h">
+      <Filter>Utils\Archivos de Encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

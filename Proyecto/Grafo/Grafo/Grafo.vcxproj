@@ -92,6 +92,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,6 +130,7 @@
     <ClInclude Include="Grafica.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="MDinamicaNew.h" />
+    <ClInclude Include="Recorrido.h" />
     <ClInclude Include="VentanaGrafo.h">
       <FileType>CppForm</FileType>
     </ClInclude>

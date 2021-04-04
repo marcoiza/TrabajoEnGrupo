@@ -7,7 +7,7 @@
 #include "Vector.h"
 #include "MDinamicaNew.h"
 
-#define MAX 20
+#define MAX 10
 
 template <class T>
 class Grafica
@@ -20,19 +20,20 @@ private:
 public:
 	Grafica();
 	void insertar();
+	void iniciarVertices();
+	void Grafica<T>::insertarVertice(int, int, int);
 	void reservarMemoria();
 	void imprimir();
 	void Prim();
 	void Kruskal();
 
 	int buscaVertice(T);
-	Lista<T>verticesAdyacentes(int);
-	void buscarAmplitud(T);
-	void cambiarDato(Vertice<T>, Lista<Vertice<T>>&);
-	void iniciarListaVertice(Lista<Vertice<T>>&);
-	void buscarProfundidad(int);
-	void buscarBactraking(Lista<Vertice<T>>&, Lista<T>, Vertice<T>);
-	void imprimirListaParientes(Lista<Vertice<T>>);
+	int getCoste(int, int);
+	void setNumver(int);
+	void setMatAdy(T**);
+	int getNumver();
+	T** getMatAdy();
+	T* getVertices();
 	~Grafica();
 };
 
@@ -53,6 +54,7 @@ template <class T>
 void Grafica<T>::reservarMemoria() {
 	matAdy = md.reservar_m(matAdy, MAX);
 	vertices = vec.reservar(MAX);
+	vec.encerar();
 }
 
 template <class T>
@@ -91,6 +93,18 @@ void Grafica<T>::insertar()
 		*(*(matAdy + Destino - 1) + Origen - 1) = Costo;
 		Ind1++;
 	}
+}
+
+template <class T>
+void Grafica<T>::iniciarVertices() {
+	for (int Indice = 0; Indice < numVer; Indice++)
+		*(vertices + Indice) = Indice + 1;
+}
+
+template <class T>
+void Grafica<T>::insertarVertice(int origen, int destino, int coste) {
+	*(*(matAdy + origen - 1) + destino - 1) = coste;
+	*(*(matAdy + destino - 1) + origen - 1) = coste;
 }
 
 template <class T>
@@ -144,104 +158,33 @@ int Grafica<T>::buscaVertice(T VertiDato)
 }
 
 template <class T>
-Lista<T> Grafica<T>::verticesAdyacentes(int vi)
-{
-	Lista<T> Adyacentes;
-	if (vi >= 0) {
-		for (int i = 0; i < numVer; i++)
-			if (*(*(matAdy + vi) + i) != 0 && *(*(matAdy + vi) + i) != 999) {
-				Adyacentes.insertaFinal(*(vertices + i));
-			}
-	}
-	return Adyacentes;
+int  Grafica<T>::getCoste(int origen, int destino) {
+	return *(*(matAdy + origen) + destino);
 }
 
 template<class T>
-void Grafica<T>::buscarAmplitud(T vi) {
-	int vf = 0, aux = vi;
-	Lista<Vertice<T>> vrts;
-	Lista<T> adyacentes, adyacentesAux;
-	iniciarListaVertice(vrts);
-	vi = buscaVertice(vi);
-	adyacentes = verticesAdyacentes(vi - 1);
-	do {
-		while (!adyacentes.listaVacia()) {
-			vf = adyacentes.eliminarPrimero();
-			if (!vrts.buscar(vf)->getInfo().getVisitado()) {
-				cambiarDato(Vertice<T>(vf, vi, true), vrts);
-				adyacentesAux.insertaFinal(vf);
-			}
-		}
-		vi = adyacentesAux.eliminarPrimero();
-		adyacentes = verticesAdyacentes(vi - 1);
-	} while (!adyacentesAux.listaVacia() || !adyacentes.listaVacia());
-	cambiarDato(Vertice<T>(aux, 0, false), vrts);
-	imprimirListaParientes(vrts);
+void Grafica<T>::setNumver(int numVer) {
+	this->numVer = numVer;
 }
 
 template<class T>
-void Grafica<T>::imprimirListaParientes(Lista<Vertice<T>> vrts) {
-	int cont = 0;
-	NodoLista<Vertice<T>>* aux = new NodoLista<Vertice<T>>;
-	Vertice<T> vrt;
-	aux = vrts.regresaPrimero();
-	std::cout << "\nDatos de la Lista\n\n";
-	while (aux) {
-		cont++;
-		vrt = aux->getInfo();
-		std::cout << cont << "._  " << vrt.getDato() << "  " << vrt.getPariente() << "  " << vrt.getVisitado() << std::endl;
-		aux = aux->getSiguiente();
-	}
-}
-
-template <class T>
-void Grafica<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts) {
-	Vertice<T> vrt;
-	for (int i = 0; i < numVer; i++) {
-		vrt = Vertice<int>(*(vertices + i), 0, false);
-		vrts.insertaFinal(vrt);
-	}
-}
-
-template <class T>
-void Grafica<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) {
-	NodoLista<Vertice<T>>* aux;
-	Vertice<T> vrtAux;
-	aux = vrts.regresaPrimero();
-	while (aux) {
-		vrtAux = aux->getInfo();
-		if (vrt.getDato() == vrtAux.getDato()) {
-			aux->setInfo(vrt);
-		}
-		aux = aux->getSiguiente();
-	}
-}
-
-template <class T>
-void Grafica<T>::buscarProfundidad(int vi) {
-	Lista<Vertice<T>> vrts;
-	iniciarListaVertice(vrts);
-	Vertice<T> vrt = Vertice<T>(vi, 0, true);
-	cambiarDato(vrt, vrts);
-	buscarBactraking(vrts, Lista<T>(), vrt);
-	imprimirListaParientes(vrts);
+void Grafica<T>::setMatAdy(T** matAdy) {
+	this->matAdy = matAdy;
 }
 
 template<class T>
-void Grafica<T>::buscarBactraking(Lista<Vertice<T>>& vrts, Lista<T> adyacentes, Vertice<T> vrt) {
-	vrt.setDato(buscaVertice(vrt.getDato()));
-	adyacentes = verticesAdyacentes(vrt.getDato() - 1);
-	if (!adyacentes.listaVacia()) {
-		vrt.setPariente(vrt.getDato());
-		for (int i = 0; !adyacentes.listaVacia(); i++) {
-			vrt.setDato(adyacentes.eliminarPrimero());
-			if (!vrts.buscar(vrt.getDato())->getInfo().getVisitado()) {
-				vrt.setVisitado(true);
-				cambiarDato(vrt, vrts);
-				buscarBactraking(vrts, Lista<T>(), vrt);
-			}
-		}
-	}
+int Grafica<T>::getNumver() {
+	return numVer;
+}
+
+template<class T>
+T** Grafica<T>::getMatAdy() {
+	return matAdy;
+}
+
+template<class T>
+T* Grafica<T>::getVertices() {
+	return vertices;
 }
 
 template<class T>
