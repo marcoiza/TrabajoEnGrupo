@@ -1,16 +1,13 @@
-#ifndef MDINAMICANEW_H_INCLUDED
-#define MDINAMICANEW_H_INCLUDED
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <Windows.h>
 
-class MDinamicaNew {
-	public:
-		int** reservar_m(int** mat, int dim);
-		void encerar(int** mat, int dim);
-		void liberar(int** mat, int dim);
+class MDinamicaNew 
+{
+public:
+	int** reservarM(int**, int);
+	void encerar(int**, int);
+	void liberar(int**, int);
 };
-
-
-#endif

@@ -1,14 +1,12 @@
 ﻿#pragma once
 
 #include <iostream>
-
 #include "Lista.h"
 #include "Vertice.h"
 #include "Vector.h"
 #include "MDinamicaNew.h"
 
 #define MAX 10
-
 
 template <class T>
 class Digrafica
@@ -40,14 +38,14 @@ template <class T>
 Digrafica<T>::Digrafica()
 {
 	reservarMemoria();
-	for (int Ind1 = 0; Ind1 < MAX; Ind1++)
+	for (int i = 0; i < MAX; i++)
 	{
-		for (int Ind2 = 0; Ind2 < MAX; Ind2++)
+		for (int j = 0; j < MAX; j++)
 		{
-			if (Ind1 != Ind2)
-				*(*(matAdy + Ind1) + Ind2) = 999;
+			if (i != j)
+				*(*(matAdy + i) + j) = 999;
 			else
-				*(*(matAdy + Ind1) + Ind2) = 0;
+				*(*(matAdy + i) + j) = 0;
 		}
 	}
 	numVer = 0;
@@ -55,7 +53,7 @@ Digrafica<T>::Digrafica()
 
 template <class T>
 void Digrafica<T>::reservarMemoria() {
-	matAdy = md.reservar_m(matAdy, MAX);
+	matAdy = md.reservarM(matAdy, MAX);
 	vertices = vec.reservar(MAX);
 	vec.encerar();
 }
@@ -63,32 +61,32 @@ void Digrafica<T>::reservarMemoria() {
 template <class T>
 void Digrafica<T>::insertar()
 {
-	int NumArcos, Indice, Origen, Destino;
+	int numArcos, indice, origen, destino;
 	std::cout << "\n\n Ingrese numero de vertices de la grafica dirigida : ";
 	std::cin >> numVer;
-	for (Indice = 0; Indice < numVer; Indice++) {
+	for (indice = 0; indice < numVer; indice++) {
 		std::cout << "\n\n Ingrese el vertice : ";
-		std::cin >> *(vertices + Indice);
+		std::cin >> *(vertices + indice);
 	}
 	std::cout << "\n\n Ingrese el numero de aristas de la grafica : ";
-	std::cin >> NumArcos;
-	Indice = 0;
-	while (Indice < NumArcos)
+	std::cin >> numArcos;
+	indice = 0;
+	while (indice < numArcos)
 	{
 		std::cout << "\n\n Ingrese vertice origen : ";
-		std::cin >> Origen;
+		std::cin >> origen;
 		std::cout << "\n\n Ingrese vertice destino : ";
-		std::cin >> Destino;
+		std::cin >> destino;
 		std::cout << "\n\n Distancia de origen a destino : ";
-		std::cin >> *(*(matAdy + Origen - 1) + Destino - 1);
-		Indice++;
+		std::cin >> *(*(matAdy + origen - 1) + destino - 1);
+		indice++;
 	}
 }
 
 template <class T>
 void Digrafica<T>::iniciarVertices() {
-	for (int Indice = 0; Indice < numVer; Indice++) 
-		*(vertices + Indice) = Indice + 1;
+	for (int indice = 0; indice < numVer; indice++) 
+		*(vertices + indice) = indice + 1;
 }
 
 template <class T>
@@ -104,52 +102,52 @@ int  Digrafica<T>::getCoste(int origen, int destino) {
 template <class T>
 void Digrafica<T>::imprimir(int Opc)
 {
-	int Ind1, Ind2;
+	int i, j;
 	switch (Opc)
 	{
 
 	case 0:
 		std::cout << "\n\n Matriz de Adyacencia o de Costos : \n\n";
-		for (Ind1 = 0; Ind1 < numVer; Ind1++)
+		for (i = 0; i < numVer; i++)
 		{
-			for (Ind2 = 0; Ind2 < numVer; Ind2++)
-				std::cout << *(*(matAdy + Ind1) + Ind2) << "\t";
+			for (j = 0; j < numVer; j++)
+				std::cout << *(*(matAdy + i) + j) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 1:
 		std::cout << "\n\n Cerradura Transitiva de la Matriz de Adyacencia : " << std::endl;
-		for (Ind1 = 0; Ind1 < numVer; Ind1++)
+		for (i = 0; i < numVer; i++)
 		{
-			std::cout << *(vertices + Ind1) << ": ";
-			for (Ind2 = 0; Ind2 < numVer; Ind2++)
-				std::cout << *(*(cerTran + Ind1) + Ind2) << "\t";
+			std::cout << *(vertices + i) << ": ";
+			for (j = 0; j < numVer; j++)
+				std::cout << *(*(cerTran + i) + j) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 2:
 		std::cout << "\n\n Matriz de Distancias Mínimas : " << std::endl;
-		for (Ind1 = 0; Ind1 < numVer; Ind1++)
+		for (i = 0; i < numVer; i++)
 		{
-			std::cout << *(vertices + Ind1) << ": ";
-			for (Ind2 = 0; Ind2 < numVer; Ind2++)
-				std::cout << *(*(matAdy + Ind1) + Ind2) << "\t";
+			std::cout << *(vertices + i) << ": ";
+			for (j = 0; j < numVer; j++)
+				std::cout << *(*(matAdy + i) + j) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 3:
 		std::cout << "\n\n Vértices Intermedios para lograr distancias mínimas : " << std::endl;
-		for (Ind1 = 0; Ind1 < numVer; Ind1++)
+		for (i = 0; i < numVer; i++)
 		{
-			for (Ind2 = 0; Ind2 < numVer; Ind2++)
-				std::cout << *(*(verInt + Ind1) + Ind2) << "\t";
+			for (j = 0; j < numVer; j++)
+				std::cout << *(*(verInt + i) + j) << "\t";
 			std::cout << std::endl;
 		}
 		break;
 	case 4:
 		std::cout << "\n\n Distancias mínimas a partir del vértice : " << vertices[0] << "\n\n";
-		for (Ind1 = 0; Ind1 < numVer; Ind1++)
-			std::cout << " " << *(distMin + Ind1) << "\t" << std::endl;
+		for (i = 0; i < numVer; i++)
+			std::cout << " " << *(distMin + i) << "\t" << std::endl;
 		break;
 	default: break;
 	}
@@ -157,13 +155,13 @@ void Digrafica<T>::imprimir(int Opc)
 }
 
 template <class T>
-int Digrafica<T>::buscaVertice(T VertiDato)
+int Digrafica<T>::buscaVertice(T datoVertice)
 {
-	int Indice = 0, Resp = -1;
-	while (Indice < numVer && *(vertices + Indice) != VertiDato)
-		Indice++;
-	if (Indice < numVer)
-		Resp = VertiDato;
+	int indice = 0, Resp = -1;
+	while (indice < numVer && *(vertices + indice) != datoVertice)
+		indice++;
+	if (indice < numVer)
+		Resp = datoVertice;
 	return Resp;
 }
 

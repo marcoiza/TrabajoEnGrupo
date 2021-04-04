@@ -19,32 +19,38 @@ public:
 };
 
 template <class T>
-NodoLista<T>::NodoLista() {
+NodoLista<T>::NodoLista() 
+{
 	siguiente = NULL;
 }
 
 template <class T>
-T NodoLista<T>::regresaInfo() {
+T NodoLista<T>::regresaInfo() 
+{
 	return dato;
 }
 
 template <class T>
-NodoLista<T>* NodoLista<T>::getSiguiente() {
+NodoLista<T>* NodoLista<T>::getSiguiente() 
+{
 	return siguiente;
 }
 
 template <class T>
-T NodoLista<T>::getInfo() {
+T NodoLista<T>::getInfo() 
+{
 	return dato;
 }
 
 template <class T>
-void NodoLista<T>::setSiguiente(NodoLista<T>* liga) {
+void NodoLista<T>::setSiguiente(NodoLista<T>* liga) 
+{
 	this->siguiente = liga;
 }
 
 template <class T>
-void NodoLista<T>::setInfo(T info) {
+void NodoLista<T>::setInfo(T info) 
+{
 	this->dato = info;
 }
 

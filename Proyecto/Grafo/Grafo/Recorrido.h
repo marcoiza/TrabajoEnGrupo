@@ -40,7 +40,8 @@ Lista<T> Recorridos<T>::verticesAdyacentes(int vi, T** matAdy, T* vertices, int 
 }
 
 template <class T>
-void Recorridos<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts, int* vertices, int numVer) {
+void Recorridos<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts, int* vertices, int numVer) 
+{
 	Vertice<T> vrt;
 	for (int i = 0; i < 9; i++) {
 		vrt = Vertice<int>(*(vertices + i), 0, false);
@@ -49,7 +50,8 @@ void Recorridos<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts, int* vertices, 
 }
 
 template<class T>
-Lista<Vertice<T>> Recorridos<T>::buscarAmplitud(T vi,int**matAdy, int* vertices, int numVer) {
+Lista<Vertice<T>> Recorridos<T>::buscarAmplitud(T vi,int**matAdy, int* vertices, int numVer) 
+{
 	int vf = 0, aux = vi;
 	Lista<Vertice<T>> vrts;
 	Lista<T> adyacentes, adyacentesAux;
@@ -72,7 +74,8 @@ Lista<Vertice<T>> Recorridos<T>::buscarAmplitud(T vi,int**matAdy, int* vertices,
 }
 
 template <class T>
-void Recorridos<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) {
+void Recorridos<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) 
+{
 	NodoLista<Vertice<T>>* aux;
 	Vertice<T> vrtAux;
 	aux = vrts.regresaPrimero();
@@ -86,7 +89,8 @@ void Recorridos<T>::cambiarDato(Vertice<T> vrt, Lista<Vertice<T>>& vrts) {
 }
 
 template <class T>
-Lista<Vertice<T>> Recorridos<T>::buscarProfundidad(int vi, int** matAdy, int* vertices, int numVer) {
+Lista<Vertice<T>> Recorridos<T>::buscarProfundidad(int vi, int** matAdy, int* vertices, int numVer) 
+{
 	Lista<Vertice<T>> vrts;
 	iniciarListaVertice(vrts, vertices, numVer);
 	Vertice<T> vrt = Vertice<T>(vi, 0, true);
@@ -97,7 +101,8 @@ Lista<Vertice<T>> Recorridos<T>::buscarProfundidad(int vi, int** matAdy, int* ve
 
 template<class T>
 void Recorridos<T>::buscarBactraking(Lista<Vertice<T>>& vrts, int** matAdy, int* vertices, 
-	Lista<T> adyacentes, Vertice<T> vrt) {
+	Lista<T> adyacentes, Vertice<T> vrt) 
+{
 	vrt.setDato(buscaVertice(vrt.getDato(), vertices, 9));
 	adyacentes = verticesAdyacentes(vrt.getDato() - 1, matAdy, vertices, 9);
 	if (!adyacentes.listaVacia()) {

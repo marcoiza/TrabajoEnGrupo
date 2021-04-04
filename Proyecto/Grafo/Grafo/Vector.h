@@ -1,6 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
-
+#pragma once
 
 template <class T>
 class Vector
@@ -15,28 +13,31 @@ public:
     void generar(int);
     void encerar();
     void imprimir();
-    void setDim(int newDim);
+    void setDim(int);
     int getDim();
-    void setVector(T* newVector);
+    void setVector(T*);
     T* getVector();
     ~Vector();
 };
 
 template <class T>
-Vector<T>::Vector() {
+Vector<T>::Vector() 
+{
     dim = 0;
     vector = NULL;
 }
 
 template <class T>
-Vector<T>::Vector(int newDim) {
+Vector<T>::Vector(int newDim) 
+{
     dim = newDim;
     reservar(dim);
     encerar();
 }
 
 template <class T>
-T* Vector<T>::reservar(int newDim) {
+T* Vector<T>::reservar(int newDim) 
+{
     dim = newDim;
     vector = new T[newDim];
     return vector;
@@ -68,28 +69,30 @@ void Vector<T>::imprimir()
 }
 
 template <class T>
-void Vector<T>::setDim(int newDim) {
+void Vector<T>::setDim(int newDim) 
+{
     dim = newDim;
 }
 
 template <class T>
-int Vector<T>::getDim() {
+int Vector<T>::getDim() 
+{
     return dim;
 }
 
 template <class T>
-void Vector<T>::setVector(T* newVector) {
+void Vector<T>::setVector(T* newVector) 
+{
     vector = newVector;
 }
 
 template <class T>
-T* Vector<T>::getVector() {
+T* Vector<T>::getVector() 
+{
     return vector;
 }
 
 template <class T>
-Vector<T>::~Vector() {
+Vector<T>::~Vector() 
+{
 }
-
-#endif 
-

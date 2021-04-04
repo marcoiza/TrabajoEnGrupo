@@ -1,8 +1,6 @@
 #pragma once
-#include "NodoLista.h"
 #include <iostream>
-
-
+#include "NodoLista.h"
 
 template <class T>
 
@@ -18,7 +16,7 @@ public:
 	void insertaFinal(T);
 	bool eliminaUnNodo(T);
 	NodoLista<T>* buscar(int);
-	NodoLista<T>* BuscaDesordenada(T);
+	NodoLista<T>* buscaDesordenada(T);
 	int tamanio();
 	T eliminarUltimo();
 	T eliminarPrimero();
@@ -26,17 +24,20 @@ public:
 };
 
 template <class T>
-Lista<T>::Lista() {
+Lista<T>::Lista() 
+{
 	primero = NULL;
 }
 
 template <class T>
-NodoLista<T>* Lista<T>::regresaPrimero() {
+NodoLista<T>* Lista<T>::regresaPrimero() 
+{
 	return primero;
 }
 
 template <class T>
-void Lista<T>::imprimir() {
+void Lista<T>::imprimir() 
+{
 	int cont = 0;
 	NodoLista<T>* aux = new NodoLista<T>;
 	aux = primero;
@@ -49,7 +50,8 @@ void Lista<T>::imprimir() {
 }
 
 template <class T>
-void Lista<T>::insertaInicio(T dato) {
+void Lista<T>::insertaInicio(T dato) 
+{
 	NodoLista<T>* aux = new NodoLista<T>();
 	aux->setInfo(dato);
 	aux->setSiguiente(primero);
@@ -57,7 +59,8 @@ void Lista<T>::insertaInicio(T dato) {
 }
 
 template <class T>
-void Lista<T>::insertaFinal(T dato) {
+void Lista<T>::insertaFinal(T dato) 
+{
 	NodoLista<T>* aux, * aux2;
 	aux = new NodoLista<T>();
 	aux->setInfo(dato);
@@ -72,9 +75,10 @@ void Lista<T>::insertaFinal(T dato) {
 }
 
 template <class T>
-bool Lista<T>::eliminaUnNodo(T dato) {
+bool Lista<T>::eliminaUnNodo(T dato) 
+{
 	NodoLista<T>* aux, * aux2;
-	bool Resp = true;
+	bool resp = true;
 	if (primero) {
 		aux = primero;
 		while ((aux->getSiguiente()) && (aux->getInfo() != dato)) {
@@ -82,7 +86,7 @@ bool Lista<T>::eliminaUnNodo(T dato) {
 			aux = aux->getSiguiente();
 		}
 		if (aux->getInfo != dato)
-			Resp = 0;
+			resp = 0;
 		else {
 			if (primero == aux)
 				primero = aux->getSiguiente();
@@ -92,13 +96,14 @@ bool Lista<T>::eliminaUnNodo(T dato) {
 		}
 	}
 	else {
-		Resp = false;
+		resp = false;
 	}
-	return Resp;
+	return resp;
 }
 
 template <class T>
-NodoLista<T>* Lista<T>::buscar(int dato) {
+NodoLista<T>* Lista<T>::buscar(int dato) 
+{
 	NodoLista<T>* aux = new NodoLista<T>;
 	int cont = 1;
 	aux = primero;
@@ -110,7 +115,8 @@ NodoLista<T>* Lista<T>::buscar(int dato) {
 }
 
 template <class T>
-int Lista<T>::tamanio() {
+int Lista<T>::tamanio() 
+{
 	NodoLista<T>* aux = new NodoLista<T>;
 	int cont = 0;
 	aux = primero;
@@ -122,38 +128,40 @@ int Lista<T>::tamanio() {
 }
 
 template <class T>
-T Lista<T>::eliminarPrimero() {
+T Lista<T>::eliminarPrimero() 
+{
 	NodoLista<T>* aux;
-	int Resp = - 1;
+	int resp = - 1;
 	if (primero)
 	{
 		aux = primero;
-		Resp = aux->getInfo();			//cambios del metodo 
+		resp = aux->getInfo();			//cambios del metodo 
 		primero = primero->getSiguiente();
 		delete (aux);
 	}
 	else
-		Resp;
-	return Resp;
+		resp;
+	return resp;
 }
 
 template <class T>
-NodoLista<T>* Lista<T>::BuscaDesordenada(T Ref)
+NodoLista<T>* Lista<T>::buscaDesordenada(T referencia)
 {
-	NodoLista<T>* aux, * Resp = NULL;
+	NodoLista<T>* aux, * resp = NULL;
 	if (primero)
 	{
 		aux = primero;
-		while ((aux->getInfo() != Ref) && (aux->getSiguiente()))
+		while ((aux->getInfo() != referencia) && (aux->getSiguiente()))
 			aux = aux->getSiguiente();
-		if (aux->getInfo() == Ref)
-			Resp = aux;
+		if (aux->getInfo() == referencia)
+			resp = aux;
 	}
-	return Resp;
+	return resp;
 }
 
 template <class T>
-bool Lista<T>::listaVacia() {
+bool Lista<T>::listaVacia() 
+{
 	if (primero==NULL) {
 		return true;
 	}
@@ -164,7 +172,7 @@ template <class T>
 T Lista<T>::eliminarUltimo()
 {
 	NodoLista<T>* anterior, * aux;
-	int Resp = - 1;
+	int resp = - 1;
 	if (primero)
 	{
 		if (!primero->getSiguiente)
@@ -178,7 +186,7 @@ T Lista<T>::eliminarUltimo()
 			while (aux->getSiguiente())
 			{
 				anterior = aux;
-				Resp = aux->getInfo();
+				resp = aux->getInfo();
 				aux = aux->getSiguiente();
 			}
 			anterior->setSiguiente(NULL);
@@ -186,6 +194,6 @@ T Lista<T>::eliminarUltimo()
 		}
 	}
 	else
-		Resp;
-	return Resp;
+		resp;
+	return resp;
 }
