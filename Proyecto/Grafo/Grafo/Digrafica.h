@@ -16,7 +16,7 @@ private:
 	int numVer;
 	T* vertices;
 	MDinamicaNew md;
-	Vector<T> vec, vec2;
+	Vector<T> vec;
 public:
 	Digrafica();
 	void reservarMemoria();

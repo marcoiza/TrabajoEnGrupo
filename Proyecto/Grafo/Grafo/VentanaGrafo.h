@@ -19,12 +19,13 @@ namespace Grafo {
 	public:
 		VentanaGrafo(void)
 		{
-			vInsertar = gcnew VentanaInsertar(dri, grf);
+			vInsertar = gcnew VentanaInsertar(dri, grf, dtgvMatAdy);
 			InitializeComponent();
 			dtgvMatAdy->Rows->Add();
 			dtgvMatAdy->Rows->AddCopies(0, 8);
 			dgvListaRecorrido->Rows->Add();
 			dgvListaRecorrido->Rows->AddCopies(0, 8);
+			cargarDatosInciales();
 		}
 
 	protected:
@@ -37,12 +38,13 @@ namespace Grafo {
 		}
 	private: VentanaInsertar^ vInsertar;
 
+	private: Lista<Vertice<int>>* vrts = new Lista<Vertice<int>>;
 	private: Digrafica<int>* dri = new Digrafica<int>;
 	private: Grafica<int>* grf = new Grafica<int>;
 	private: Recorridos<int>* rcd = new Recorridos<int>;
+
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::DataGridView^ dtgvMatAdy;
-
 	private: System::Windows::Forms::Button^ btnBuscar;
 	private: System::Windows::Forms::TextBox^ txtBuscar;
 	private: System::Windows::Forms::Button^ btnNuevoGrafo;
@@ -63,6 +65,9 @@ namespace Grafo {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column12;
 	private: System::Windows::Forms::Button^ btnBuscarProfundidad;
 	private: System::Windows::Forms::Button^ btnSalir;
+	private: System::Windows::Forms::Label^ lblListaRecorridos;
+	private: System::Windows::Forms::Label^ lblMatrizCoste;
+	private: System::Windows::Forms::Label^ lblAyuda;
 
 	private: System::ComponentModel::Container ^components;
 
@@ -70,6 +75,8 @@ namespace Grafo {
 
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->dtgvMatAdy = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -91,6 +98,9 @@ namespace Grafo {
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnBuscarProfundidad = (gcnew System::Windows::Forms::Button());
 			this->btnSalir = (gcnew System::Windows::Forms::Button());
+			this->lblListaRecorridos = (gcnew System::Windows::Forms::Label());
+			this->lblMatrizCoste = (gcnew System::Windows::Forms::Label());
+			this->lblAyuda = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dtgvMatAdy))->BeginInit();
 			this->panel2->SuspendLayout();
@@ -100,9 +110,9 @@ namespace Grafo {
 			// panel1
 			// 
 			this->panel1->Controls->Add(this->dtgvMatAdy);
-			this->panel1->Location = System::Drawing::Point(479, 57);
+			this->panel1->Location = System::Drawing::Point(470, 92);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(471, 422);
+			this->panel1->Size = System::Drawing::Size(471, 407);
 			this->panel1->TabIndex = 0;
 			// 
 			// dtgvMatAdy
@@ -110,6 +120,15 @@ namespace Grafo {
 			this->dtgvMatAdy->AllowUserToAddRows = false;
 			this->dtgvMatAdy->AllowUserToDeleteRows = false;
 			this->dtgvMatAdy->Anchor = System::Windows::Forms::AnchorStyles::None;
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dtgvMatAdy->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->dtgvMatAdy->ColumnHeadersHeight = 30;
 			this->dtgvMatAdy->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dtgvMatAdy->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
@@ -210,7 +229,7 @@ namespace Grafo {
 			// 
 			this->btnBuscar->Location = System::Drawing::Point(134, 12);
 			this->btnBuscar->Name = L"btnBuscar";
-			this->btnBuscar->Size = System::Drawing::Size(144, 23);
+			this->btnBuscar->Size = System::Drawing::Size(156, 23);
 			this->btnBuscar->TabIndex = 1;
 			this->btnBuscar->Text = L"Buscar en Amplitud";
 			this->btnBuscar->UseVisualStyleBackColor = true;
@@ -225,7 +244,7 @@ namespace Grafo {
 			// 
 			// btnNuevoGrafo
 			// 
-			this->btnNuevoGrafo->Location = System::Drawing::Point(455, 12);
+			this->btnNuevoGrafo->Location = System::Drawing::Point(500, 12);
 			this->btnNuevoGrafo->Name = L"btnNuevoGrafo";
 			this->btnNuevoGrafo->Size = System::Drawing::Size(103, 23);
 			this->btnNuevoGrafo->TabIndex = 3;
@@ -236,7 +255,7 @@ namespace Grafo {
 			// panel2
 			// 
 			this->panel2->Controls->Add(this->dgvListaRecorrido);
-			this->panel2->Location = System::Drawing::Point(52, 57);
+			this->panel2->Location = System::Drawing::Point(46, 92);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(313, 407);
 			this->panel2->TabIndex = 4;
@@ -246,6 +265,15 @@ namespace Grafo {
 			this->dgvListaRecorrido->AllowUserToAddRows = false;
 			this->dgvListaRecorrido->AllowUserToDeleteRows = false;
 			this->dgvListaRecorrido->Anchor = System::Windows::Forms::AnchorStyles::None;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgvListaRecorrido->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->dgvListaRecorrido->ColumnHeadersHeight = 30;
 			this->dgvListaRecorrido->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dgvListaRecorrido->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
@@ -258,7 +286,6 @@ namespace Grafo {
 			this->dgvListaRecorrido->RowTemplate->Height = 30;
 			this->dgvListaRecorrido->Size = System::Drawing::Size(272, 372);
 			this->dgvListaRecorrido->TabIndex = 0;
-			this->dgvListaRecorrido->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &VentanaGrafo::dataGridView2_CellContentClick);
 			// 
 			// Column10
 			// 
@@ -289,17 +316,17 @@ namespace Grafo {
 			// 
 			// btnBuscarProfundidad
 			// 
-			this->btnBuscarProfundidad->Location = System::Drawing::Point(296, 12);
+			this->btnBuscarProfundidad->Location = System::Drawing::Point(309, 12);
 			this->btnBuscarProfundidad->Name = L"btnBuscarProfundidad";
-			this->btnBuscarProfundidad->Size = System::Drawing::Size(143, 23);
+			this->btnBuscarProfundidad->Size = System::Drawing::Size(171, 23);
 			this->btnBuscarProfundidad->TabIndex = 5;
-			this->btnBuscarProfundidad->Text = L"Buscar en Amplitud";
+			this->btnBuscarProfundidad->Text = L"Buscar en Profundidad";
 			this->btnBuscarProfundidad->UseVisualStyleBackColor = true;
 			this->btnBuscarProfundidad->Click += gcnew System::EventHandler(this, &VentanaGrafo::btnBuscarProfundidad_Click);
 			// 
 			// btnSalir
 			// 
-			this->btnSalir->Location = System::Drawing::Point(577, 12);
+			this->btnSalir->Location = System::Drawing::Point(623, 12);
 			this->btnSalir->Name = L"btnSalir";
 			this->btnSalir->Size = System::Drawing::Size(75, 23);
 			this->btnSalir->TabIndex = 6;
@@ -307,11 +334,41 @@ namespace Grafo {
 			this->btnSalir->UseVisualStyleBackColor = true;
 			this->btnSalir->Click += gcnew System::EventHandler(this, &VentanaGrafo::btnSalir_Click);
 			// 
+			// lblListaRecorridos
+			// 
+			this->lblListaRecorridos->AutoSize = true;
+			this->lblListaRecorridos->Location = System::Drawing::Point(62, 72);
+			this->lblListaRecorridos->Name = L"lblListaRecorridos";
+			this->lblListaRecorridos->Size = System::Drawing::Size(174, 17);
+			this->lblListaRecorridos->TabIndex = 7;
+			this->lblListaRecorridos->Text = L"Lista de Vertices Visitados";
+			// 
+			// lblMatrizCoste
+			// 
+			this->lblMatrizCoste->AutoSize = true;
+			this->lblMatrizCoste->Location = System::Drawing::Point(488, 72);
+			this->lblMatrizCoste->Name = L"lblMatrizCoste";
+			this->lblMatrizCoste->Size = System::Drawing::Size(215, 17);
+			this->lblMatrizCoste->TabIndex = 8;
+			this->lblMatrizCoste->Text = L"Matriz de Adyacencia Etiquetada";
+			// 
+			// lblAyuda
+			// 
+			this->lblAyuda->AutoSize = true;
+			this->lblAyuda->Location = System::Drawing::Point(62, 502);
+			this->lblAyuda->Name = L"lblAyuda";
+			this->lblAyuda->Size = System::Drawing::Size(449, 17);
+			this->lblAyuda->TabIndex = 9;
+			this->lblAyuda->Text = L"El 0 representa un valor nulo y el 999 que no existe un camino directo";
+			// 
 			// VentanaGrafo
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(982, 553);
+			this->Controls->Add(this->lblAyuda);
+			this->Controls->Add(this->lblMatrizCoste);
+			this->Controls->Add(this->lblListaRecorridos);
 			this->Controls->Add(this->btnSalir);
 			this->Controls->Add(this->btnBuscarProfundidad);
 			this->Controls->Add(this->panel2);
@@ -319,7 +376,9 @@ namespace Grafo {
 			this->Controls->Add(this->txtBuscar);
 			this->Controls->Add(this->btnBuscar);
 			this->Controls->Add(this->panel1);
+			this->MaximizeBox = false;
 			this->Name = L"VentanaGrafo";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"VentanaGrafo";
 			this->panel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dtgvMatAdy))->EndInit();
@@ -331,40 +390,39 @@ namespace Grafo {
 		}
 #pragma endregion
 	private: System::Void btnNuevoGrafo_Click(System::Object^ sender, System::EventArgs^ e) {
-		vInsertar = gcnew VentanaInsertar(dri, grf);
+		rcd->iniciarListaVertice(*vrts, 9);
+		dri->~Digrafica();
+		grf->~Grafica();
+		dri = new Digrafica<int>;
+		grf = new Grafica<int>;
+		vInsertar = gcnew VentanaInsertar(dri, grf, dtgvMatAdy);
 		vInsertar->Visible = true;
 	}
 
 private: System::Void btnBuscar_Click(System::Object^ sender, System::EventArgs^ e) {
-	Lista<Vertice<int>> vrts;
 	if(vInsertar->getChxGrafoDirigido())
-		vrts = rcd->buscarAmplitud(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
+		*vrts = rcd->buscarAmplitud(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
 	else 
-		vrts = rcd->buscarAmplitud(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
-	Vertice<int> vrt;
-	for (int i = 0; i < 9; i++) {
-		vrt = vrts.buscar(i + 1)->getInfo();
-		dgvListaRecorrido->Rows[i]->Cells[0]->Value = vrt.getDato();
-		dgvListaRecorrido->Rows[i]->Cells[1]->Value = vrt.getPariente();
-		dgvListaRecorrido->Rows[i]->Cells[2]->Value = vrt.getVisitado();
-		for (int j = 0; j < 9; j++)
-			if (vInsertar->getChxGrafoDirigido())
-				dtgvMatAdy->Rows[i]->Cells[j]->Value = dri->getCoste(i, j);
-			else
-				dtgvMatAdy->Rows[i]->Cells[j]->Value = grf->getCoste(i, j);
-	}
+		*vrts = rcd->buscarAmplitud(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
+	cargarDatos();
 }
-private: System::Void dataGridView2_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
+
 private: System::Void btnBuscarProfundidad_Click(System::Object^ sender, System::EventArgs^ e) {
-	Lista<Vertice<int>> vrts;
-	Vertice<int> vrt;
 	if (vInsertar->getChxGrafoDirigido())
-		vrts = rcd->buscarProfundidad(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
+		*vrts = rcd->buscarProfundidad(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
 	else
-		vrts = rcd->buscarProfundidad(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
+		*vrts = rcd->buscarProfundidad(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
+	cargarDatos();
+}
+
+private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+
+public: void cargarDatos() {
+	Vertice<int> vrt;
 	for (int i = 0; i < 9; i++) {
-		vrt = vrts.buscar(i + 1)->getInfo();
+		vrt = vrts->buscar(i + 1)->getInfo();
 		dgvListaRecorrido->Rows[i]->Cells[0]->Value = vrt.getDato();
 		dgvListaRecorrido->Rows[i]->Cells[1]->Value = vrt.getPariente();
 		dgvListaRecorrido->Rows[i]->Cells[2]->Value = vrt.getVisitado();
@@ -375,8 +433,16 @@ private: System::Void btnBuscarProfundidad_Click(System::Object^ sender, System:
 				dtgvMatAdy->Rows[i]->Cells[j]->Value = grf->getCoste(i, j);
 	}
 }
-private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
-	exit(0);
+
+public: void cargarDatosInciales() {
+	for (int i = 0; i < 9; i++) {
+		dgvListaRecorrido->Rows[i]->Cells[0]->Value = i + 1;
+		dgvListaRecorrido->Rows[i]->Cells[1]->Value = 0;
+		dgvListaRecorrido->Rows[i]->Cells[2]->Value = false;
+		for (int j = 0; j < 9; j++)
+				dtgvMatAdy->Rows[i]->Cells[j]->Value = 0;
+	}
 }
+
 };
 }

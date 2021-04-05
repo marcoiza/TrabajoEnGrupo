@@ -11,6 +11,7 @@ public:
 	Lista<Vertice<T>> buscarAmplitud(T, int**, int* ,int);
 	void cambiarDato(Vertice<T>, Lista<Vertice<T>>&);
 	void iniciarListaVertice(Lista<Vertice<T>>&, int*, int);
+	void iniciarListaVertice(Lista<Vertice<T>>&, int);
 	Lista<Vertice<T>> buscarProfundidad(int, int**, int* , int);
 	void buscarBactraking(Lista<Vertice<T>>&, int**, int*, Lista<T>, Vertice<T>);
 };
@@ -37,6 +38,16 @@ Lista<T> Recorridos<T>::verticesAdyacentes(int vi, T** matAdy, T* vertices, int 
 			}
 	}
 	return Adyacentes;
+}
+
+template <class T>
+void Recorridos<T>::iniciarListaVertice(Lista<Vertice<T>>& vrts, int numVer)
+{
+	Vertice<T> vrt;
+	for (int i = 0; i < 9; i++) {
+		vrt = Vertice<int>(0 , 0, false);
+		vrts.insertaFinal(vrt);
+	}
 }
 
 template <class T>

@@ -17,9 +17,13 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 	hash=None, flags=None
 Class Grafo.VentanaInsertar: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(Digrafica<int>*, Grafica<int>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Digrafica<int>*, Grafica<int>*, System.Windows.Forms.DataGridView): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     getChxGrafoDirigido(): PrivateScope, Public, HideBySig
+    cargarDatos(): PrivateScope, Public, HideBySig
 Class Grafo.VentanaGrafo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    cargarDatos(): PrivateScope, Public, HideBySig
+    cargarDatosInciales(): PrivateScope, Public, HideBySig

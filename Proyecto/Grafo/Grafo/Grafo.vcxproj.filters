@@ -59,9 +59,6 @@
     <ClInclude Include="Digrafica.h">
       <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="MDinamicaNew.h">
-      <Filter>Modelo\Archivos de Encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Vertice.h">
       <Filter>Modelo\Archivos de Encabezado</Filter>
     </ClInclude>
@@ -77,8 +74,11 @@
     <ClInclude Include="NodoLista.h">
       <Filter>Utils\Archivos de Encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="MDinamicaNew.h">
+      <Filter>Utils\Archivos de Encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>Modelo\Archivos de Encabezado</Filter>
+      <Filter>Utils\Archivos de Encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
