@@ -113,7 +113,7 @@ Lista<Vertice<T>> Recorridos<T>::buscarProfundidad(int vi, int** matAdy, int* ve
 template<class T>
 void Recorridos<T>::buscarBactraking(Lista<Vertice<T>>& vrts, int** matAdy, int* vertices, 
 	Lista<T> adyacentes, Vertice<T> vrt) 
-{
+{	
 	vrt.setDato(buscaVertice(vrt.getDato(), vertices, 9));
 	adyacentes = verticesAdyacentes(vrt.getDato() - 1, matAdy, vertices, 9);
 	if (!adyacentes.listaVacia()) {
