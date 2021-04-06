@@ -1,10 +1,15 @@
 ﻿  Aplicativo.cpp
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaInsertar.h(345,14): warning C4244: 'argumento': conversión de 'wchar_t' a '_Elem'; posible pérdida de datos
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\IngresoDeDatos.h(19,14): warning C4244: 'argumento': conversión de 'wchar_t' a '_Elem'; posible pérdida de datos
           with
           [
               _Elem=char
           ]
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaGrafo.h(440,1): warning C4965: conversión boxing implícita de entero 0; utilice nullptr o conversión explícita
-C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaGrafo.h(443,1): warning C4965: conversión boxing implícita de entero 0; utilice nullptr o conversión explícita
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\IngresoDeDatos.h(26,14): warning C4244: 'argumento': conversión de 'wchar_t' a '_Elem'; posible pérdida de datos
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaGrafo.h(446,1): warning C4965: conversión boxing implícita de entero 0; utilice nullptr o conversión explícita
+C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\Grafo\VentanaGrafo.h(449,1): warning C4965: conversión boxing implícita de entero 0; utilice nullptr o conversión explícita
   Aplicativo.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   Grafo.vcxproj -> C:\Users\KEVIN\Documents\ESTRUCTURA_DE_DATOS\CODIGO\PARCIAL3\Deberes\TrabajoEnGrupo\Proyecto\Grafo\x64\Debug\Grafo.exe

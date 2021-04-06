@@ -80,5 +80,8 @@
     <ClInclude Include="Vector.h">
       <Filter>Utils\Archivos de Encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="IngresoDeDatos.h">
+      <Filter>Utils\Archivos de Encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

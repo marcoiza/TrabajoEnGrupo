@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="Digrafica.h" />
     <ClInclude Include="Grafica.h" />
+    <ClInclude Include="IngresoDeDatos.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="MDinamicaNew.h" />
     <ClInclude Include="Recorrido.h" />

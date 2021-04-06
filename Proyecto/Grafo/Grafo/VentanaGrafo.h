@@ -46,11 +46,10 @@ namespace Grafo {
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::DataGridView^ dtgvMatAdy;
 	private: System::Windows::Forms::Button^ btnBuscar;
-	private: System::Windows::Forms::TextBox^ txtBuscar;
+	private: System::Windows::Forms::TextBox^ txbBuscar;
 	private: System::Windows::Forms::Button^ btnNuevoGrafo;
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::DataGridView^ dgvListaRecorrido;
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -68,7 +67,6 @@ namespace Grafo {
 	private: System::Windows::Forms::Label^ lblListaRecorridos;
 	private: System::Windows::Forms::Label^ lblMatrizCoste;
 	private: System::Windows::Forms::Label^ lblAyuda;
-
 	private: System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -89,7 +87,7 @@ namespace Grafo {
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnBuscar = (gcnew System::Windows::Forms::Button());
-			this->txtBuscar = (gcnew System::Windows::Forms::TextBox());
+			this->txbBuscar = (gcnew System::Windows::Forms::TextBox());
 			this->btnNuevoGrafo = (gcnew System::Windows::Forms::Button());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->dgvListaRecorrido = (gcnew System::Windows::Forms::DataGridView());
@@ -235,12 +233,12 @@ namespace Grafo {
 			this->btnBuscar->UseVisualStyleBackColor = true;
 			this->btnBuscar->Click += gcnew System::EventHandler(this, &VentanaGrafo::btnBuscar_Click);
 			// 
-			// txtBuscar
+			// txbBuscar
 			// 
-			this->txtBuscar->Location = System::Drawing::Point(13, 12);
-			this->txtBuscar->Name = L"txtBuscar";
-			this->txtBuscar->Size = System::Drawing::Size(100, 22);
-			this->txtBuscar->TabIndex = 2;
+			this->txbBuscar->Location = System::Drawing::Point(13, 12);
+			this->txbBuscar->Name = L"txbBuscar";
+			this->txbBuscar->Size = System::Drawing::Size(100, 22);
+			this->txbBuscar->TabIndex = 2;
 			// 
 			// btnNuevoGrafo
 			// 
@@ -373,7 +371,7 @@ namespace Grafo {
 			this->Controls->Add(this->btnBuscarProfundidad);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->btnNuevoGrafo);
-			this->Controls->Add(this->txtBuscar);
+			this->Controls->Add(this->txbBuscar);
 			this->Controls->Add(this->btnBuscar);
 			this->Controls->Add(this->panel1);
 			this->MaximizeBox = false;
@@ -400,19 +398,27 @@ namespace Grafo {
 	}
 
 private: System::Void btnBuscar_Click(System::Object^ sender, System::EventArgs^ e) {
-	if(vInsertar->getChxGrafoDirigido())
-		*vrts = rcd->buscarAmplitud(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
-	else 
-		*vrts = rcd->buscarAmplitud(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
-	cargarDatos();
+	if (IngresoDeDatos::validarTXB(txbBuscar->Text)) {
+		if (vInsertar->getChxGrafoDirigido())
+			*vrts = rcd->buscarAmplitud(IngresoDeDatos::convertToInt(txbBuscar->Text), 
+				dri->getMatAdy(), dri->getVertices(), dri->getNumver());
+		else
+			*vrts = rcd->buscarAmplitud(IngresoDeDatos::convertToInt(txbBuscar->Text), 
+				grf->getMatAdy(), grf->getVertices(), grf->getNumver());
+		cargarDatos();
+	}
 }
 
 private: System::Void btnBuscarProfundidad_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (vInsertar->getChxGrafoDirigido())
-		*vrts = rcd->buscarProfundidad(1, dri->getMatAdy(), dri->getVertices(), dri->getNumver());
-	else
-		*vrts = rcd->buscarProfundidad(1, grf->getMatAdy(), grf->getVertices(), grf->getNumver());
-	cargarDatos();
+	if (IngresoDeDatos::validarTXB(txbBuscar->Text)) {
+		if (vInsertar->getChxGrafoDirigido())
+			*vrts = rcd->buscarProfundidad(IngresoDeDatos::convertToInt(txbBuscar->Text),
+				dri->getMatAdy(), dri->getVertices(), dri->getNumver());
+		else
+			*vrts = rcd->buscarProfundidad(IngresoDeDatos::convertToInt(txbBuscar->Text), 
+				grf->getMatAdy(), grf->getVertices(), grf->getNumver());
+		cargarDatos();
+	}
 }
 
 private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -440,7 +446,7 @@ public: void cargarDatosInciales() {
 		dgvListaRecorrido->Rows[i]->Cells[1]->Value = 0;
 		dgvListaRecorrido->Rows[i]->Cells[2]->Value = false;
 		for (int j = 0; j < 9; j++)
-				dtgvMatAdy->Rows[i]->Cells[j]->Value = 0;
+			dtgvMatAdy->Rows[i]->Cells[j]->Value = 0;
 	}
 }
 

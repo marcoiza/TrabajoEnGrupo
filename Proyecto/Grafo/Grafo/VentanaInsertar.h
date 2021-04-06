@@ -4,6 +4,8 @@
 #include "Digrafica.h"
 #include "Grafica.h"
 #include "Recorrido.h"
+#include "IngresoDeDatos.h"
+
 #include <string>
 
 namespace Grafo {
@@ -41,8 +43,8 @@ namespace Grafo {
 	private: Digrafica<int>* dri;
 	private: Grafica<int>* grf;
 	private: int* nClicks = new int;
-	private: System::Windows::Forms::ComboBox^ cbxNumVertices;
 
+	private: System::Windows::Forms::ComboBox^ cbxNumVertices;
 	private: System::Windows::Forms::Panel^ pnlNAristas;
 	private: System::Windows::Forms::Button^ btnAceptar;
 	private: System::Windows::Forms::Panel^ pnlInsertarArista;
@@ -55,17 +57,13 @@ namespace Grafo {
 	private: System::Windows::Forms::TextBox^ txbVi;
 	private: System::Windows::Forms::Label^ lblAristas;
 	private: System::Windows::Forms::Label^ lblNumAristas;
-
 	private: System::Windows::Forms::TextBox^ txbNumAristas;
 	private: System::Windows::Forms::Label^ lblNumVertices;
 	private: System::Windows::Forms::CheckBox^ chxGrafoNoDirigido;
 	private: System::Windows::Forms::CheckBox^ chxGrafoDirigido;
 	private: System::Windows::Forms::Label^ lblNumAristaIngresar;
 	private: System::Windows::Forms::Button^ btnSalir;
-
-
-	private:
-		System::ComponentModel::Container ^components;
+	private: System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
@@ -311,26 +309,30 @@ namespace Grafo {
 		}
 #pragma endregion
 	private: System::Void btnAceptar_Click(System::Object^ sender, System::EventArgs^ e) {
-		pnlInsertarArista->Show();
-		lblAristas->Text = txbNumAristas->Text;
-		*nClicks = convertToInt(txbNumAristas->Text);
-		if (chxGrafoDirigido->Checked) {
-			dri->setNumver(cbxNumVertices->SelectedIndex + 1);
-			dri->iniciarVertices();
+		if (IngresoDeDatos::validarTXB(txbNumAristas->Text) && IngresoDeDatos::validarTXB(cbxNumVertices->Text)) {
+			pnlInsertarArista->Show();
+			lblAristas->Text = txbNumAristas->Text;
+			*nClicks = IngresoDeDatos::convertToInt(txbNumAristas->Text);
+			if (chxGrafoDirigido->Checked) {
+				dri->setNumver(cbxNumVertices->SelectedIndex + 1);
+				dri->iniciarVertices();
+			}
+			else {
+				grf->setNumver(cbxNumVertices->SelectedIndex + 1);
+				grf->iniciarVertices();
+			}
+			btnAceptar->Visible = false;
 		}
-		else {
-			grf->setNumver(cbxNumVertices->SelectedIndex + 1);
-			grf->iniciarVertices();
-		}
-		btnAceptar->Visible = false;
 	}
 
 	private: System::Void btnInsertar_Click(System::Object^ sender, System::EventArgs^ e) {   
 		if (chxGrafoDirigido->Checked  && *nClicks > 0) {
-			dri->insertarVertice(convertToInt(txbVi->Text), convertToInt(txbVf->Text), convertToInt(txtCoste->Text));
+			dri->insertarVertice(IngresoDeDatos::convertToInt(txbVi->Text), 
+				IngresoDeDatos::convertToInt(txbVf->Text), IngresoDeDatos::convertToInt(txtCoste->Text));
 		}
 		else {
-			grf->insertarVertice(convertToInt(txbVi->Text), convertToInt(txbVf->Text), convertToInt(txtCoste->Text));
+			grf->insertarVertice(IngresoDeDatos::convertToInt(txbVi->Text), 
+				IngresoDeDatos::convertToInt(txbVf->Text), IngresoDeDatos::convertToInt(txtCoste->Text));
 		}
 		*nClicks = *nClicks - 1;
 		if (*nClicks == 0) {
@@ -339,44 +341,30 @@ namespace Grafo {
 		}
 	}
 
-	private:int convertToInt(String^ a) {
-		std::string aux;
-		for (int i = 0; i < a->Length; i++) {
-			aux += a[i];
+	private: System::Void chxGrafoDirigido_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		chxGrafoNoDirigido->Checked = false;
+	}
+	
+	private: System::Void chxGrafoNoDirigido_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		chxGrafoDirigido->Checked = false;
+	}
+
+	public: bool getChxGrafoDirigido() {
+		return chxGrafoDirigido->Checked;
+	}
+
+	public: void cargarDatos() {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++)
+				if (getChxGrafoDirigido())
+					dtgvMatAdy->Rows[i]->Cells[j]->Value = dri->getCoste(i, j);
+				else
+					dtgvMatAdy->Rows[i]->Cells[j]->Value = grf->getCoste(i, j);
 		}
-		return stoi(aux);
 	}
 
-	private:String^ convertToString(std::string a) {
-		String^ aux;
-		for (int i = 0; i < a.length(); i++) {
-			aux += a[i] - 48;
-		}
-		return aux;
+	private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Visible = false;
 	}
-
-private: System::Void chxGrafoDirigido_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	chxGrafoNoDirigido->Checked = false;
-}
-private: System::Void chxGrafoNoDirigido_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	chxGrafoDirigido->Checked = false;
-}
-
-public: bool getChxGrafoDirigido() {
-	return chxGrafoDirigido->Checked;
-}
-
-public: void cargarDatos() {
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++)
-			if (getChxGrafoDirigido())
-				dtgvMatAdy->Rows[i]->Cells[j]->Value = dri->getCoste(i, j);
-			else
-				dtgvMatAdy->Rows[i]->Cells[j]->Value = grf->getCoste(i, j);
-	}
-}
-private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Visible = false;
-}
 };
 }
