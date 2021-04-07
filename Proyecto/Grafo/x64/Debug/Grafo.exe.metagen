@@ -27,3 +27,5 @@ Class Grafo.VentanaGrafo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     cargarDatos(): PrivateScope, Public, HideBySig
     cargarDatosInciales(): PrivateScope, Public, HideBySig
+    cargarDatosIncialesTree(): PrivateScope, Public, HideBySig
+    cargarListaAdy(): PrivateScope, Public, HideBySig

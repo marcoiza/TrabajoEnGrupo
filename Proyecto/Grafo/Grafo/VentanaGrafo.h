@@ -27,6 +27,7 @@ namespace Grafo {
 			dgvListaRecorrido->Rows->AddCopies(0, 8);
 			cargarDatosInciales();
 			cargarDatosIncialesTree();
+			*nClicks = 0;
 		}
 
 	protected:
@@ -86,8 +87,8 @@ namespace Grafo {
 
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->dtgvMatAdy = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -126,10 +127,10 @@ namespace Grafo {
 			// panel1
 			// 
 			this->panel1->Controls->Add(this->dtgvMatAdy);
-			this->panel1->Location = System::Drawing::Point(352, 75);
-			this->panel1->Margin = System::Windows::Forms::Padding(2);
+			this->panel1->Location = System::Drawing::Point(469, 92);
+			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(353, 331);
+			this->panel1->Size = System::Drawing::Size(471, 407);
 			this->panel1->TabIndex = 0;
 			this->panel1->Visible = false;
 			// 
@@ -138,15 +139,15 @@ namespace Grafo {
 			this->dtgvMatAdy->AllowUserToAddRows = false;
 			this->dtgvMatAdy->AllowUserToDeleteRows = false;
 			this->dtgvMatAdy->Anchor = System::Windows::Forms::AnchorStyles::None;
-			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dtgvMatAdy->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dtgvMatAdy->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->dtgvMatAdy->ColumnHeadersHeight = 30;
 			this->dtgvMatAdy->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dtgvMatAdy->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
@@ -154,13 +155,13 @@ namespace Grafo {
 					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9
 			});
 			this->dtgvMatAdy->Cursor = System::Windows::Forms::Cursors::Default;
-			this->dtgvMatAdy->Location = System::Drawing::Point(16, 12);
-			this->dtgvMatAdy->Margin = System::Windows::Forms::Padding(2);
+			this->dtgvMatAdy->Location = System::Drawing::Point(21, 15);
+			this->dtgvMatAdy->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dtgvMatAdy->Name = L"dtgvMatAdy";
 			this->dtgvMatAdy->ReadOnly = true;
 			this->dtgvMatAdy->RowHeadersWidth = 51;
 			this->dtgvMatAdy->RowTemplate->Height = 30;
-			this->dtgvMatAdy->Size = System::Drawing::Size(322, 302);
+			this->dtgvMatAdy->Size = System::Drawing::Size(429, 372);
 			this->dtgvMatAdy->TabIndex = 0;
 			// 
 			// Column1
@@ -247,25 +248,27 @@ namespace Grafo {
 			// panelLista
 			// 
 			this->panelLista->Controls->Add(this->treeLista);
-			this->panelLista->Location = System::Drawing::Point(318, 75);
+			this->panelLista->Location = System::Drawing::Point(425, 99);
+			this->panelLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panelLista->Name = L"panelLista";
-			this->panelLista->Size = System::Drawing::Size(205, 322);
+			this->panelLista->Size = System::Drawing::Size(273, 396);
 			this->panelLista->TabIndex = 12;
 			this->panelLista->Visible = false;
 			// 
 			// treeLista
 			// 
-			this->treeLista->Location = System::Drawing::Point(37, 35);
+			this->treeLista->Location = System::Drawing::Point(49, 43);
+			this->treeLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->treeLista->Name = L"treeLista";
-			this->treeLista->Size = System::Drawing::Size(121, 232);
+			this->treeLista->Size = System::Drawing::Size(160, 285);
 			this->treeLista->TabIndex = 0;
 			// 
 			// btnBuscar
 			// 
-			this->btnBuscar->Location = System::Drawing::Point(100, 10);
-			this->btnBuscar->Margin = System::Windows::Forms::Padding(2);
+			this->btnBuscar->Location = System::Drawing::Point(133, 12);
+			this->btnBuscar->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBuscar->Name = L"btnBuscar";
-			this->btnBuscar->Size = System::Drawing::Size(117, 19);
+			this->btnBuscar->Size = System::Drawing::Size(156, 23);
 			this->btnBuscar->TabIndex = 1;
 			this->btnBuscar->Text = L"Buscar en Amplitud";
 			this->btnBuscar->UseVisualStyleBackColor = true;
@@ -273,18 +276,18 @@ namespace Grafo {
 			// 
 			// txbBuscar
 			// 
-			this->txbBuscar->Location = System::Drawing::Point(10, 10);
-			this->txbBuscar->Margin = System::Windows::Forms::Padding(2);
+			this->txbBuscar->Location = System::Drawing::Point(13, 12);
+			this->txbBuscar->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txbBuscar->Name = L"txbBuscar";
-			this->txbBuscar->Size = System::Drawing::Size(76, 20);
+			this->txbBuscar->Size = System::Drawing::Size(100, 22);
 			this->txbBuscar->TabIndex = 2;
 			// 
 			// btnNuevoGrafo
 			// 
-			this->btnNuevoGrafo->Location = System::Drawing::Point(375, 10);
-			this->btnNuevoGrafo->Margin = System::Windows::Forms::Padding(2);
+			this->btnNuevoGrafo->Location = System::Drawing::Point(500, 12);
+			this->btnNuevoGrafo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNuevoGrafo->Name = L"btnNuevoGrafo";
-			this->btnNuevoGrafo->Size = System::Drawing::Size(77, 19);
+			this->btnNuevoGrafo->Size = System::Drawing::Size(103, 23);
 			this->btnNuevoGrafo->TabIndex = 3;
 			this->btnNuevoGrafo->Text = L"Nuevo Grafo";
 			this->btnNuevoGrafo->UseVisualStyleBackColor = true;
@@ -293,10 +296,10 @@ namespace Grafo {
 			// panel2
 			// 
 			this->panel2->Controls->Add(this->dgvListaRecorrido);
-			this->panel2->Location = System::Drawing::Point(34, 75);
-			this->panel2->Margin = System::Windows::Forms::Padding(2);
+			this->panel2->Location = System::Drawing::Point(45, 92);
+			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(235, 331);
+			this->panel2->Size = System::Drawing::Size(313, 407);
 			this->panel2->TabIndex = 4;
 			// 
 			// dgvListaRecorrido
@@ -304,27 +307,27 @@ namespace Grafo {
 			this->dgvListaRecorrido->AllowUserToAddRows = false;
 			this->dgvListaRecorrido->AllowUserToDeleteRows = false;
 			this->dgvListaRecorrido->Anchor = System::Windows::Forms::AnchorStyles::None;
-			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle4->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle4->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dgvListaRecorrido->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgvListaRecorrido->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->dgvListaRecorrido->ColumnHeadersHeight = 30;
 			this->dgvListaRecorrido->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dgvListaRecorrido->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->Column10,
 					this->Column11, this->Column12
 			});
-			this->dgvListaRecorrido->Location = System::Drawing::Point(14, 12);
-			this->dgvListaRecorrido->Margin = System::Windows::Forms::Padding(2);
+			this->dgvListaRecorrido->Location = System::Drawing::Point(19, 15);
+			this->dgvListaRecorrido->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dgvListaRecorrido->Name = L"dgvListaRecorrido";
 			this->dgvListaRecorrido->RowHeadersWidth = 51;
 			this->dgvListaRecorrido->RowTemplate->Height = 30;
-			this->dgvListaRecorrido->Size = System::Drawing::Size(204, 302);
+			this->dgvListaRecorrido->Size = System::Drawing::Size(272, 372);
 			this->dgvListaRecorrido->TabIndex = 0;
 			// 
 			// Column10
@@ -356,10 +359,10 @@ namespace Grafo {
 			// 
 			// btnBuscarProfundidad
 			// 
-			this->btnBuscarProfundidad->Location = System::Drawing::Point(232, 10);
-			this->btnBuscarProfundidad->Margin = System::Windows::Forms::Padding(2);
+			this->btnBuscarProfundidad->Location = System::Drawing::Point(309, 12);
+			this->btnBuscarProfundidad->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBuscarProfundidad->Name = L"btnBuscarProfundidad";
-			this->btnBuscarProfundidad->Size = System::Drawing::Size(128, 19);
+			this->btnBuscarProfundidad->Size = System::Drawing::Size(171, 23);
 			this->btnBuscarProfundidad->TabIndex = 5;
 			this->btnBuscarProfundidad->Text = L"Buscar en Profundidad";
 			this->btnBuscarProfundidad->UseVisualStyleBackColor = true;
@@ -367,10 +370,10 @@ namespace Grafo {
 			// 
 			// btnSalir
 			// 
-			this->btnSalir->Location = System::Drawing::Point(467, 10);
-			this->btnSalir->Margin = System::Windows::Forms::Padding(2);
+			this->btnSalir->Location = System::Drawing::Point(623, 12);
+			this->btnSalir->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSalir->Name = L"btnSalir";
-			this->btnSalir->Size = System::Drawing::Size(56, 19);
+			this->btnSalir->Size = System::Drawing::Size(75, 23);
 			this->btnSalir->TabIndex = 6;
 			this->btnSalir->Text = L"Salir";
 			this->btnSalir->UseVisualStyleBackColor = true;
@@ -379,39 +382,37 @@ namespace Grafo {
 			// lblListaRecorridos
 			// 
 			this->lblListaRecorridos->AutoSize = true;
-			this->lblListaRecorridos->Location = System::Drawing::Point(46, 58);
-			this->lblListaRecorridos->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblListaRecorridos->Location = System::Drawing::Point(61, 71);
 			this->lblListaRecorridos->Name = L"lblListaRecorridos";
-			this->lblListaRecorridos->Size = System::Drawing::Size(130, 13);
+			this->lblListaRecorridos->Size = System::Drawing::Size(174, 17);
 			this->lblListaRecorridos->TabIndex = 7;
 			this->lblListaRecorridos->Text = L"Lista de Vertices Visitados";
 			// 
 			// lblMatrizCoste
 			// 
 			this->lblMatrizCoste->AutoSize = true;
-			this->lblMatrizCoste->Location = System::Drawing::Point(366, 58);
-			this->lblMatrizCoste->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblMatrizCoste->Location = System::Drawing::Point(488, 71);
 			this->lblMatrizCoste->Name = L"lblMatrizCoste";
-			this->lblMatrizCoste->Size = System::Drawing::Size(10, 13);
+			this->lblMatrizCoste->Size = System::Drawing::Size(13, 17);
 			this->lblMatrizCoste->TabIndex = 8;
 			this->lblMatrizCoste->Text = L"-";
 			// 
 			// lblAyuda
 			// 
 			this->lblAyuda->AutoSize = true;
-			this->lblAyuda->Location = System::Drawing::Point(46, 408);
-			this->lblAyuda->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblAyuda->Location = System::Drawing::Point(61, 502);
 			this->lblAyuda->Name = L"lblAyuda";
-			this->lblAyuda->Size = System::Drawing::Size(142, 13);
+			this->lblAyuda->Size = System::Drawing::Size(191, 17);
 			this->lblAyuda->TabIndex = 9;
 			this->lblAyuda->Text = L"El 0 representa un valor nulo";
 			// 
 			// RBLista
 			// 
 			this->RBLista->AutoSize = true;
-			this->RBLista->Location = System::Drawing::Point(573, 13);
+			this->RBLista->Location = System::Drawing::Point(764, 16);
+			this->RBLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->RBLista->Name = L"RBLista";
-			this->RBLista->Size = System::Drawing::Size(120, 17);
+			this->RBLista->Size = System::Drawing::Size(155, 21);
 			this->RBLista->TabIndex = 10;
 			this->RBLista->TabStop = true;
 			this->RBLista->Text = L"Lista de adyacencia";
@@ -421,9 +422,10 @@ namespace Grafo {
 			// RBMat
 			// 
 			this->RBMat->AutoSize = true;
-			this->RBMat->Location = System::Drawing::Point(573, 37);
+			this->RBMat->Location = System::Drawing::Point(764, 46);
+			this->RBMat->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->RBMat->Name = L"RBMat";
-			this->RBMat->Size = System::Drawing::Size(126, 17);
+			this->RBMat->Size = System::Drawing::Size(163, 21);
 			this->RBMat->TabIndex = 11;
 			this->RBMat->TabStop = true;
 			this->RBMat->Text = L"Matriz de adyacencia";
@@ -432,9 +434,9 @@ namespace Grafo {
 			// 
 			// VentanaGrafo
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(734, 449);
+			this->ClientSize = System::Drawing::Size(979, 553);
 			this->Controls->Add(this->panelLista);
 			this->Controls->Add(this->RBMat);
 			this->Controls->Add(this->RBLista);
@@ -448,7 +450,7 @@ namespace Grafo {
 			this->Controls->Add(this->txbBuscar);
 			this->Controls->Add(this->btnBuscar);
 			this->Controls->Add(this->panel1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->MaximizeBox = false;
 			this->Name = L"VentanaGrafo";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -536,8 +538,11 @@ public: void cargarDatosIncialesTree() {
 
 
 private: System::Void RBLista_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (RBLista->Checked == true) {
-		cargarListaAdy();
+	if (RBLista->Checked) {
+		*nClicks = *nClicks + 1;
+		if (*nClicks == 1) {
+			cargarListaAdy();
+		}
 		panel1->Visible = false;
 		panelLista->Visible = true;
 		lblMatrizCoste->Text = "Lista de adyacencia";
@@ -556,10 +561,13 @@ public: void cargarListaAdy() {
 	Object^ ingreso;
 	Lista<int> listaTree;
 	for (int i = 0; i < 9; i++) {
-		listaTree = rcd->verticesAdyacentes(i+1,grf->getMatAdy(),grf->getVertices(),9);
-		for (int j = 0; j < listaTree.tamanio(); j++) {
+		if (vInsertar->getChxGrafoDirigido())
+			listaTree = rcd->verticesAdyacentes(i, dri->getMatAdy(), dri->getVertices(), 9);
+		else
+			listaTree = rcd->verticesAdyacentes(i,grf->getMatAdy(),grf->getVertices(),9);
+		for (int j = 0; !listaTree.listaVacia() ; j++) {
 			ingreso = listaTree.eliminarPrimero();
-			treeLista->Nodes[i+1]->Nodes->Add(ingreso->ToString());
+			treeLista->Nodes[i]->Nodes->Add(ingreso->ToString());
 		}
 	}
 }
