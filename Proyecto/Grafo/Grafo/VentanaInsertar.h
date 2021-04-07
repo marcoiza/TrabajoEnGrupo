@@ -46,7 +46,8 @@ namespace Grafo {
 
 	private: System::Windows::Forms::ComboBox^ cbxNumVertices;
 	private: System::Windows::Forms::Panel^ pnlNAristas;
-	private: System::Windows::Forms::Button^ btnAceptar;
+	private: System::Windows::Forms::Button^ btnIngresarAristas;
+
 	private: System::Windows::Forms::Panel^ pnlInsertarArista;
 	private: System::Windows::Forms::Label^ lblCoste;
 	private: System::Windows::Forms::Label^ lblVf;
@@ -64,7 +65,8 @@ namespace Grafo {
 	private: System::Windows::Forms::CheckBox^ chxGrafoDirigido;
 	private: System::Windows::Forms::Label^ lblNumAristaIngresar;
 	private: System::Windows::Forms::Button^ btnSalir;
-	private: System::ComponentModel::Container ^components;
+	private: System::Windows::Forms::Button^ btnGenerarAristas;
+	private: System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
@@ -77,7 +79,7 @@ namespace Grafo {
 			this->lblNumVertices = (gcnew System::Windows::Forms::Label());
 			this->lblNumAristas = (gcnew System::Windows::Forms::Label());
 			this->txbNumAristas = (gcnew System::Windows::Forms::TextBox());
-			this->btnAceptar = (gcnew System::Windows::Forms::Button());
+			this->btnIngresarAristas = (gcnew System::Windows::Forms::Button());
 			this->pnlInsertarArista = (gcnew System::Windows::Forms::Panel());
 			this->lblNumAristaIngresar = (gcnew System::Windows::Forms::Label());
 			this->lblAristas = (gcnew System::Windows::Forms::Label());
@@ -88,6 +90,7 @@ namespace Grafo {
 			this->txbCoste = (gcnew System::Windows::Forms::TextBox());
 			this->txbVf = (gcnew System::Windows::Forms::TextBox());
 			this->txbVi = (gcnew System::Windows::Forms::TextBox());
+			this->btnGenerarAristas = (gcnew System::Windows::Forms::Button());
 			this->pnlNAristas->SuspendLayout();
 			this->pnlInsertarArista->SuspendLayout();
 			this->SuspendLayout();
@@ -110,13 +113,14 @@ namespace Grafo {
 			// 
 			// pnlNAristas
 			// 
+			this->pnlNAristas->Controls->Add(this->btnGenerarAristas);
 			this->pnlNAristas->Controls->Add(this->chxGrafoNoDirigido);
 			this->pnlNAristas->Controls->Add(this->btnSalir);
 			this->pnlNAristas->Controls->Add(this->chxGrafoDirigido);
 			this->pnlNAristas->Controls->Add(this->lblNumVertices);
 			this->pnlNAristas->Controls->Add(this->lblNumAristas);
 			this->pnlNAristas->Controls->Add(this->txbNumAristas);
-			this->pnlNAristas->Controls->Add(this->btnAceptar);
+			this->pnlNAristas->Controls->Add(this->btnIngresarAristas);
 			this->pnlNAristas->Controls->Add(this->cbxNumVertices);
 			this->pnlNAristas->Location = System::Drawing::Point(12, 12);
 			this->pnlNAristas->Name = L"pnlNAristas";
@@ -136,7 +140,7 @@ namespace Grafo {
 			// 
 			// btnSalir
 			// 
-			this->btnSalir->Location = System::Drawing::Point(214, 158);
+			this->btnSalir->Location = System::Drawing::Point(292, 158);
 			this->btnSalir->Name = L"btnSalir";
 			this->btnSalir->Size = System::Drawing::Size(75, 23);
 			this->btnSalir->TabIndex = 8;
@@ -183,15 +187,15 @@ namespace Grafo {
 			this->txbNumAristas->TabIndex = 2;
 			this->txbNumAristas->Text = L"1";
 			// 
-			// btnAceptar
+			// btnIngresarAristas
 			// 
-			this->btnAceptar->Location = System::Drawing::Point(76, 158);
-			this->btnAceptar->Name = L"btnAceptar";
-			this->btnAceptar->Size = System::Drawing::Size(75, 23);
-			this->btnAceptar->TabIndex = 1;
-			this->btnAceptar->Text = L"Aceptar";
-			this->btnAceptar->UseVisualStyleBackColor = true;
-			this->btnAceptar->Click += gcnew System::EventHandler(this, &VentanaInsertar::btnAceptar_Click);
+			this->btnIngresarAristas->Location = System::Drawing::Point(153, 158);
+			this->btnIngresarAristas->Name = L"btnIngresarAristas";
+			this->btnIngresarAristas->Size = System::Drawing::Size(123, 23);
+			this->btnIngresarAristas->TabIndex = 1;
+			this->btnIngresarAristas->Text = L"Ingresar Aristas";
+			this->btnIngresarAristas->UseVisualStyleBackColor = true;
+			this->btnIngresarAristas->Click += gcnew System::EventHandler(this, &VentanaInsertar::btnIngresarAristas_Click);
 			// 
 			// pnlInsertarArista
 			// 
@@ -288,6 +292,16 @@ namespace Grafo {
 			this->txbVi->TabIndex = 0;
 			this->txbVi->Text = L"1";
 			// 
+			// btnGenerarAristas
+			// 
+			this->btnGenerarAristas->Location = System::Drawing::Point(17, 158);
+			this->btnGenerarAristas->Name = L"btnGenerarAristas";
+			this->btnGenerarAristas->Size = System::Drawing::Size(118, 23);
+			this->btnGenerarAristas->TabIndex = 9;
+			this->btnGenerarAristas->Text = L"Generar Aristas";
+			this->btnGenerarAristas->UseVisualStyleBackColor = true;
+			this->btnGenerarAristas->Click += gcnew System::EventHandler(this, &VentanaInsertar::btnGenerarAristas_Click);
+			// 
 			// VentanaInsertar
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -309,7 +323,7 @@ namespace Grafo {
 
 		}
 #pragma endregion
-	private: System::Void btnAceptar_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void btnIngresarAristas_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (IngresoDeDatos::validarTXB(txbNumAristas->Text) && IngresoDeDatos::validarTXB(cbxNumVertices->Text)) {
 			pnlInsertarArista->Show();
 			lblAristas->Text = txbNumAristas->Text;
@@ -322,7 +336,7 @@ namespace Grafo {
 				grf->setNumver(cbxNumVertices->SelectedIndex + 1);
 				grf->iniciarVertices();
 			}
-			btnAceptar->Visible = false;
+			btnIngresarAristas->Visible = false;
 		}
 	}
 
@@ -334,7 +348,7 @@ namespace Grafo {
 					IngresoDeDatos::convertToInt(txbVf->Text), IngresoDeDatos::convertToInt(txbCoste->Text));
 			}
 			else {
-				grf->insertarVertice(IngresoDeDatos::convertToInt(txbVi->Text),
+				grf->insertarArista(IngresoDeDatos::convertToInt(txbVi->Text),
 					IngresoDeDatos::convertToInt(txbVf->Text), IngresoDeDatos::convertToInt(txbCoste->Text));
 			}
 			*nClicks = *nClicks - 1;
@@ -370,5 +384,21 @@ namespace Grafo {
 	private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Visible = false;
 	}
+	private: System::Void btnGenerarAristas_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (IngresoDeDatos::validarTXB(txbNumAristas->Text) && IngresoDeDatos::validarTXB(cbxNumVertices->Text)) {
+			if (chxGrafoDirigido->Checked) {
+				dri->setNumver(cbxNumVertices->SelectedIndex + 1);
+				dri->iniciarVertices();
+				dri->generarAristas(IngresoDeDatos::convertToInt(txbNumAristas->Text));
+			}
+			else {
+				grf->setNumver(cbxNumVertices->SelectedIndex + 1);
+				grf->iniciarVertices();
+				grf->generarAristas(IngresoDeDatos::convertToInt(txbNumAristas->Text));
+			}
+			cargarDatos();
+		}
+	}
+
 };
 }

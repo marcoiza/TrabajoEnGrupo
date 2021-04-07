@@ -355,9 +355,9 @@ namespace Grafo {
 			this->lblAyuda->AutoSize = true;
 			this->lblAyuda->Location = System::Drawing::Point(62, 502);
 			this->lblAyuda->Name = L"lblAyuda";
-			this->lblAyuda->Size = System::Drawing::Size(449, 17);
+			this->lblAyuda->Size = System::Drawing::Size(191, 17);
 			this->lblAyuda->TabIndex = 9;
-			this->lblAyuda->Text = L"El 0 representa un valor nulo y el 999 que no existe un camino directo";
+			this->lblAyuda->Text = L"El 0 representa un valor nulo";
 			// 
 			// VentanaGrafo
 			// 

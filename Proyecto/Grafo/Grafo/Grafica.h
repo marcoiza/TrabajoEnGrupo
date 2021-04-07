@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <ctime>
+
 #include "Lista.h"
 #include "Vertice.h"
 #include "Vector.h"
@@ -20,12 +22,14 @@ public:
 	Grafica();
 	void insertar();
 	void iniciarVertices();
-	void insertarVertice(int, int, int);
+	void insertarArista(int, int, int);
 	void reservarMemoria();
 	void imprimir();
 	void Prim();
 	void Kruskal();
 	int buscaVertice(T);
+	void generarAristas(int);
+	int aleatorio(int);
 	int getCoste(int, int);
 	void setNumver(int);
 	void setMatAdy(T**);
@@ -42,7 +46,7 @@ Grafica<T>::Grafica()
 	for (int i = 0; i < MAX; i++)
 		for (int j = 0; j < MAX; j++)
 			if (i != j)
-				*(*(matAdy + i) + j) = 999;
+				*(*(matAdy + i) + j) = 0;
 			else
 				*(*(matAdy + i) + j) = 0;
 	numVer = 0;
@@ -103,7 +107,7 @@ void Grafica<T>::iniciarVertices()
 }
 
 template <class T>
-void Grafica<T>::insertarVertice(int origen, int destino, int coste) 
+void Grafica<T>::insertarArista(int origen, int destino, int coste) 
 {
 	*(*(matAdy + origen - 1) + destino - 1) = coste;
 	*(*(matAdy + destino - 1) + origen - 1) = coste;
@@ -157,6 +161,33 @@ int Grafica<T>::buscaVertice(T datoVertice)
 	if (indice < numVer)
 		resp = datoVertice;
 	return resp;
+}
+
+template <class T>
+void Grafica<T>::generarAristas(int numAr) {
+	if (numAr<=numVer && numVer > 5) {
+		int aux = 0, aux2 = 0;
+		for (int i = 0; i < numAr;) {	
+			aux = abs(aleatorio(numVer + i) - i);
+			do {
+				aux2 = aleatorio(abs(numVer - i));
+			} while (aux == aux2);
+			if (*(*(matAdy + aux) + aux2) == 0 || *(*(matAdy + aux2) + aux) == 0) {
+				*(*(matAdy + aux) + aux2) = 1;
+				*(*(matAdy + aux2) + aux) = 1;
+				i++;
+			}
+		}
+	}
+}
+
+template <class T>
+int Grafica<T>::aleatorio(int numAr) {
+	srand(time(NULL));
+	if (numAr == 0) {
+		numAr = 1;
+	}
+	return rand() % (numAr);
 }
 
 template <class T>

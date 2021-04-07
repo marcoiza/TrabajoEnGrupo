@@ -26,6 +26,8 @@ public:
 	int getCoste(int, int);
 	void imprimir(int);
 	int buscaVertice(T);
+	void generarAristas(int);
+	int aleatorio(int);
 	void setNumver(int);
 	void setMatAdy(T**);
 	int getNumver();
@@ -43,7 +45,7 @@ Digrafica<T>::Digrafica()
 		for (int j = 0; j < MAX; j++)
 		{
 			if (i != j)
-				*(*(matAdy + i) + j) = 999;
+				*(*(matAdy + i) + j) = 0;
 			else
 				*(*(matAdy + i) + j) = 0;
 		}
@@ -163,6 +165,36 @@ int Digrafica<T>::buscaVertice(T datoVertice)
 	if (indice < numVer)
 		Resp = datoVertice;
 	return Resp;
+}
+
+template <class T>
+void Digrafica<T>::generarAristas(int numAr) {
+	if (numAr <= (numVer + (numVer/2)) && numVer > 5) {
+		int aux = 0, aux2 = 0;
+		for (int i = 0; i < numAr;) {
+			aux = abs(aleatorio(numVer + i) - i);
+			do {
+				aux2 = aleatorio(abs(numVer - i));
+			} while (aux == aux2);	
+			if (*(*(matAdy + aux) + aux2) == 0) {
+				*(*(matAdy + aux) + aux2) = 1;
+				i++;
+			}
+			else if (*(*(matAdy + aux2) + aux) == 0) {
+				*(*(matAdy + aux2) + aux) = 1;
+				i++;
+			}
+		}
+	}
+}
+
+template <class T>
+int Digrafica<T>::aleatorio(int numAr) {
+	if (numAr == 0) {
+		numAr = 1;
+	}
+	srand(time(NULL));
+	return rand() % (numAr);
 }
 
 template<class T>
