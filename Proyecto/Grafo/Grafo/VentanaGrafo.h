@@ -87,8 +87,8 @@ namespace Grafo {
 
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->dtgvMatAdy = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -132,22 +132,21 @@ namespace Grafo {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(471, 407);
 			this->panel1->TabIndex = 0;
-			this->panel1->Visible = false;
 			// 
 			// dtgvMatAdy
 			// 
 			this->dtgvMatAdy->AllowUserToAddRows = false;
 			this->dtgvMatAdy->AllowUserToDeleteRows = false;
 			this->dtgvMatAdy->Anchor = System::Windows::Forms::AnchorStyles::None;
-			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle5->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dtgvMatAdy->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dtgvMatAdy->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this->dtgvMatAdy->ColumnHeadersHeight = 30;
 			this->dtgvMatAdy->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dtgvMatAdy->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
@@ -248,17 +247,17 @@ namespace Grafo {
 			// panelLista
 			// 
 			this->panelLista->Controls->Add(this->treeLista);
-			this->panelLista->Location = System::Drawing::Point(425, 99);
-			this->panelLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panelLista->Location = System::Drawing::Point(445, 92);
+			this->panelLista->Margin = System::Windows::Forms::Padding(4);
 			this->panelLista->Name = L"panelLista";
-			this->panelLista->Size = System::Drawing::Size(273, 396);
+			this->panelLista->Size = System::Drawing::Size(273, 354);
 			this->panelLista->TabIndex = 12;
 			this->panelLista->Visible = false;
 			// 
 			// treeLista
 			// 
-			this->treeLista->Location = System::Drawing::Point(49, 43);
-			this->treeLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->treeLista->Location = System::Drawing::Point(47, 4);
+			this->treeLista->Margin = System::Windows::Forms::Padding(4);
 			this->treeLista->Name = L"treeLista";
 			this->treeLista->Size = System::Drawing::Size(160, 285);
 			this->treeLista->TabIndex = 0;
@@ -307,15 +306,15 @@ namespace Grafo {
 			this->dgvListaRecorrido->AllowUserToAddRows = false;
 			this->dgvListaRecorrido->AllowUserToDeleteRows = false;
 			this->dgvListaRecorrido->Anchor = System::Windows::Forms::AnchorStyles::None;
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle6->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dgvListaRecorrido->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgvListaRecorrido->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
 			this->dgvListaRecorrido->ColumnHeadersHeight = 30;
 			this->dgvListaRecorrido->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dgvListaRecorrido->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
@@ -393,9 +392,9 @@ namespace Grafo {
 			this->lblMatrizCoste->AutoSize = true;
 			this->lblMatrizCoste->Location = System::Drawing::Point(488, 71);
 			this->lblMatrizCoste->Name = L"lblMatrizCoste";
-			this->lblMatrizCoste->Size = System::Drawing::Size(13, 17);
+			this->lblMatrizCoste->Size = System::Drawing::Size(215, 17);
 			this->lblMatrizCoste->TabIndex = 8;
-			this->lblMatrizCoste->Text = L"-";
+			this->lblMatrizCoste->Text = L"Matriz de Adyacencia Etiquetada";
 			// 
 			// lblAyuda
 			// 
@@ -410,7 +409,7 @@ namespace Grafo {
 			// 
 			this->RBLista->AutoSize = true;
 			this->RBLista->Location = System::Drawing::Point(764, 16);
-			this->RBLista->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->RBLista->Margin = System::Windows::Forms::Padding(4);
 			this->RBLista->Name = L"RBLista";
 			this->RBLista->Size = System::Drawing::Size(155, 21);
 			this->RBLista->TabIndex = 10;
@@ -423,7 +422,7 @@ namespace Grafo {
 			// 
 			this->RBMat->AutoSize = true;
 			this->RBMat->Location = System::Drawing::Point(764, 46);
-			this->RBMat->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->RBMat->Margin = System::Windows::Forms::Padding(4);
 			this->RBMat->Name = L"RBMat";
 			this->RBMat->Size = System::Drawing::Size(163, 21);
 			this->RBMat->TabIndex = 11;

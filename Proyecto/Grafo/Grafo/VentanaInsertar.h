@@ -102,7 +102,10 @@ namespace Grafo {
 					L"5", L"6", L"7", L"8", L"9", L"10"
 			});
 			this->cbxNumVertices->FormattingEnabled = true;
-			this->cbxNumVertices->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"6", L"7", L"8", L"9" });
+			this->cbxNumVertices->Items->AddRange(gcnew cli::array< System::Object^  >(9) {
+				L"1", L"2", L"3", L"4", L"5", L"6", L"7",
+					L"8", L"9"
+			});
 			this->cbxNumVertices->Location = System::Drawing::Point(17, 77);
 			this->cbxNumVertices->Name = L"cbxNumVertices";
 			this->cbxNumVertices->Size = System::Drawing::Size(121, 24);
@@ -117,6 +120,7 @@ namespace Grafo {
 			this->pnlNAristas->Controls->Add(this->lblNumVertices);
 			this->pnlNAristas->Controls->Add(this->lblNumAristas);
 			this->pnlNAristas->Controls->Add(this->txbNumAristas);
+			this->pnlNAristas->Controls->Add(this->btnIngresarAristas);
 			this->pnlNAristas->Controls->Add(this->cbxNumVertices);
 			this->pnlNAristas->Location = System::Drawing::Point(12, 12);
 			this->pnlNAristas->Name = L"pnlNAristas";
@@ -125,7 +129,7 @@ namespace Grafo {
 			// 
 			// btnGenerarAristas
 			// 
-			this->btnGenerarAristas->Location = System::Drawing::Point(88, 158);
+			this->btnGenerarAristas->Location = System::Drawing::Point(17, 158);
 			this->btnGenerarAristas->Name = L"btnGenerarAristas";
 			this->btnGenerarAristas->Size = System::Drawing::Size(118, 23);
 			this->btnGenerarAristas->TabIndex = 9;
@@ -146,7 +150,7 @@ namespace Grafo {
 			// 
 			// btnSalir
 			// 
-			this->btnSalir->Location = System::Drawing::Point(229, 158);
+			this->btnSalir->Location = System::Drawing::Point(292, 158);
 			this->btnSalir->Name = L"btnSalir";
 			this->btnSalir->Size = System::Drawing::Size(75, 23);
 			this->btnSalir->TabIndex = 8;
@@ -195,7 +199,7 @@ namespace Grafo {
 			// 
 			// btnIngresarAristas
 			// 
-			this->btnIngresarAristas->Location = System::Drawing::Point(23, 203);
+			this->btnIngresarAristas->Location = System::Drawing::Point(153, 158);
 			this->btnIngresarAristas->Name = L"btnIngresarAristas";
 			this->btnIngresarAristas->Size = System::Drawing::Size(123, 23);
 			this->btnIngresarAristas->TabIndex = 1;
@@ -213,7 +217,6 @@ namespace Grafo {
 			this->pnlInsertarArista->Controls->Add(this->lblVi);
 			this->pnlInsertarArista->Controls->Add(this->btnInsertar);
 			this->pnlInsertarArista->Controls->Add(this->txbCoste);
-			this->pnlInsertarArista->Controls->Add(this->btnIngresarAristas);
 			this->pnlInsertarArista->Controls->Add(this->txbVf);
 			this->pnlInsertarArista->Controls->Add(this->txbVi);
 			this->pnlInsertarArista->Location = System::Drawing::Point(13, 231);
@@ -268,7 +271,7 @@ namespace Grafo {
 			// 
 			// btnInsertar
 			// 
-			this->btnInsertar->Location = System::Drawing::Point(152, 203);
+			this->btnInsertar->Location = System::Drawing::Point(149, 202);
 			this->btnInsertar->Name = L"btnInsertar";
 			this->btnInsertar->Size = System::Drawing::Size(75, 23);
 			this->btnInsertar->TabIndex = 3;
@@ -398,6 +401,7 @@ namespace Grafo {
 			}
 			cargarDatos();
 			System::Windows::Forms::MessageBox::Show("Aristas Generadas");
+			this->Visible = false;
 		}
 	}
 
