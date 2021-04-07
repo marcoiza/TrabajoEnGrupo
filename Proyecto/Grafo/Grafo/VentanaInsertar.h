@@ -381,6 +381,8 @@ namespace Grafo {
 		}
 	}
 
+	
+
 	private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Visible = false;
 	}
