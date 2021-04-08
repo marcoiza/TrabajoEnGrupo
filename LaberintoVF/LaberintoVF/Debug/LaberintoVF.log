@@ -1,0 +1,7 @@
+﻿  LaberintoVF.cpp
+C:\Users\Usuario\source\repos\LaberintoVF\LaberintoVF\Laberinto.h(37,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Usuario\source\repos\LaberintoVF\LaberintoVF\Laberinto.h(24): message : al compilar la función del miembro clase plantilla "Laberinto<int>::Laberinto(void)"
+C:\Users\Usuario\source\repos\LaberintoVF\LaberintoVF\Menu.h(23): message : Vea la referencia a la creación de una instancia de la función plantilla "Laberinto<int>::Laberinto(void)" que se está compilando
+C:\Users\Usuario\source\repos\LaberintoVF\LaberintoVF\Menu.h(18): message : Vea la referencia a la creación de una instancia de clase plantilla "Laberinto<int>" que se está compilando
+C:\Users\Usuario\source\repos\LaberintoVF\LaberintoVF\Menu.h(128): warning C4715: 'Menu::iniciar': no todas las rutas de acceso de control devuelven un valor
+  LaberintoVF.vcxproj -> C:\Users\Usuario\source\repos\LaberintoVF\Debug\LaberintoVF.exe
