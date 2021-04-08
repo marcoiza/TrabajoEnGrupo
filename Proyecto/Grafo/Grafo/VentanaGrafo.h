@@ -471,6 +471,8 @@ namespace Grafo {
 		dri = new Digrafica<int>;
 		grf = new Grafica<int>;
 		vInsertar = gcnew VentanaInsertar(dri, grf, dtgvMatAdy);
+		iniciarListaAdy();
+		*nClicks = 0;
 		vInsertar->Visible = true;
 	}
 
@@ -570,5 +572,13 @@ public: void cargarListaAdy() {
 		}
 	}
 }
+
+  public: void iniciarListaAdy() {
+	  Object^ ingreso;
+	  Lista<int> listaTree;
+	  for (int i = 0; i < 9; i++) {
+			  treeLista->Nodes[i]->Nodes->Clear();
+	  }
+  }
 };
 }

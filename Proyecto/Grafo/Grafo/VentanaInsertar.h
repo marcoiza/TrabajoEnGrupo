@@ -205,7 +205,6 @@ namespace Grafo {
 			this->btnIngresarAristas->TabIndex = 1;
 			this->btnIngresarAristas->Text = L"Ingresar Aristas";
 			this->btnIngresarAristas->UseVisualStyleBackColor = true;
-			this->btnIngresarAristas->Visible = false;
 			this->btnIngresarAristas->Click += gcnew System::EventHandler(this, &VentanaInsertar::btnIngresarAristas_Click);
 			// 
 			// pnlInsertarArista

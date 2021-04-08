@@ -29,3 +29,4 @@ Class Grafo.VentanaGrafo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     cargarDatosInciales(): PrivateScope, Public, HideBySig
     cargarDatosIncialesTree(): PrivateScope, Public, HideBySig
     cargarListaAdy(): PrivateScope, Public, HideBySig
+    iniciarListaAdy(): PrivateScope, Public, HideBySig
