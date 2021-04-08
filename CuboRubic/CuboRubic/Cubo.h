@@ -18,9 +18,16 @@ public:
 	void girarAristaVerticalAbajo(int);
 	void girarAristaHorizontalDer(int);
 	void girarAristaHorizontalIzq(int);
+	void girarCircularDer(int);
+	void girarCircularIzq(int);
+
 	void opcionesGiros(int, int);
 	int aleatorio(int, int);
-	void desarmarCubo();
+	void desordenarCubo(int);
+
+	void sexyMove();
+	void permT();
+
 	char** getMatriz();
 	~Cubo();
 };

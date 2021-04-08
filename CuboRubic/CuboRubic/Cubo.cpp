@@ -34,49 +34,99 @@ void Cubo::girarLista(ListaCircular<char>& list) {
 
 void Cubo::girarAristaVerticalArriba(int y) {
 	ListaCircular<char> list;
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < 16; i++) 
 		list.insertarFinal(*(*(matriz + i) + y));
-	}
 	girarLista(list);
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < 16; i++) 
 		*(*(matriz + i) + y) = list.eliminarPrimero();
-	}
 }
 
 void Cubo::girarAristaVerticalAbajo(int y) {
 	ListaCircular<char> list;
-	for (int i = 15; i >= 0; i--) {
+	for (int i = 15; i >= 0; i--) 
 		list.insertarFinal(*(*(matriz + i) + y));
+	girarLista(list);
+	for (int i = 15; i >= 0; i--) 
+		*(*(matriz + i) + y) = list.eliminarPrimero();
+}
+
+void Cubo::girarAristaHorizontalIzq(int x) {
+	ListaCircular<char> list;
+	for (int i = 0; i < 12; i++) {
+		list.insertarFinal(*(*(matriz + x) + i));
+		if (i == 11)
+			for (int j = 7; j >= 4; j--) 
+				list.insertarFinal(*(*(matriz + 19 - x) + j));
 	}
 	girarLista(list);
-	for (int i = 15; i >= 0; i--) {
-		*(*(matriz + i) + y) = list.eliminarPrimero();
+	for (int i = 0; i < 12; i++) {
+		*(*(matriz + x) + i) = list.eliminarPrimero();
+		if (i == 11)
+			for (int j = 7; j >= 4; j--) 
+				*(*(matriz + 19 - x) + j) = list.eliminarPrimero();
 	}
 }
 
 void Cubo::girarAristaHorizontalDer(int x) {
 	ListaCircular<char> list;
-	for (int i = 0; i < 12; i++) {
+	for (int i = 11; i >= 0; i--) {
 		list.insertarFinal(*(*(matriz + x) + i));
+		if(i == 0)
+			for (int j = 4; j < 8; j++) 
+				list.insertarFinal(*(*(matriz + 19 - x) + j));
 	}
 	girarLista(list);
-	for (int i = 0; i < 12; i++) {
+	for (int i = 11; i >= 0; i--) {
 		*(*(matriz + x) + i) = list.eliminarPrimero();
+		if (i == 0)
+			for (int j = 4; j < 8; j++) 
+				*(*(matriz + 19 - x) + j) = list.eliminarPrimero();
 	}
 }
 
-void Cubo::girarAristaHorizontalIzq(int x) {
+void Cubo::girarCircularIzq(int x) {    //cord 0 - 3
 	ListaCircular<char> list;
-	for (int i = 11; i >= 0; i--) {
+	for (int i = 4; i < 8; i++) 
 		list.insertarFinal(*(*(matriz + x) + i));
-	}
+	for (int i = 4; i < 8; i++) 
+		list.insertarFinal(*(*(matriz + i) + 11 - x));
+	for (int i = 7; i >= 4; i--) 
+		list.insertarFinal(*(*(matriz + 11 - x) + i));
+	for (int i = 7; i >= 4; i--) 
+		list.insertarFinal(*(*(matriz + i) + x));
 	girarLista(list);
-	for (int i = 11; i >= 0; i--) {
+	for (int i = 4; i < 8; i++)
 		*(*(matriz + x) + i) = list.eliminarPrimero();
-	}
+	for (int i = 4; i < 8; i++)
+		*(*(matriz + i) + 11 - x) = list.eliminarPrimero();
+	for (int i = 7; i >= 4; i--)
+		*(*(matriz + 11 - x) + i) = list.eliminarPrimero();
+	for (int i = 7; i >= 4; i--)
+		*(*(matriz + i) + x) = list.eliminarPrimero();
 }
 
-void Cubo::opcionesGiros(int op, int cord) {	//cord>3 y cord<8
+void Cubo::girarCircularDer(int x) {
+	ListaCircular<char> list;
+	for (int i = 7; i >= 4; i--)
+		list.insertarFinal(*(*(matriz + x) + i));
+	for (int i = 4; i < 8; i++)
+		list.insertarFinal(*(*(matriz + i) + x));
+	for (int i = 4; i < 8; i++)
+		list.insertarFinal(*(*(matriz + 11 - x) + i));
+	for (int i = 7; i >= 4; i--)
+		list.insertarFinal(*(*(matriz + i) + 11 - x));
+	girarLista(list);
+	for (int i = 7; i >= 4; i--)
+		*(*(matriz + x) + i) = list.eliminarPrimero();
+	for (int i = 4; i < 8; i++)
+		*(*(matriz + i) + x) = list.eliminarPrimero();
+	for (int i = 4; i < 8; i++)
+		*(*(matriz + 11 - x) + i) = list.eliminarPrimero();
+	for (int i = 7; i >= 4; i--)
+		*(*(matriz + i) + 11 - x) = list.eliminarPrimero();
+}
+
+void Cubo::opcionesGiros(int op, int cord) {	//cord 4-7
 	switch (op) {
 	case 1:
 		girarAristaVerticalArriba(cord);
@@ -90,12 +140,18 @@ void Cubo::opcionesGiros(int op, int cord) {	//cord>3 y cord<8
 	case 4:
 		girarAristaHorizontalIzq(cord);
 		break;
+	case 5:
+		girarCircularIzq(cord);
+		break;
+	case 6:
+		girarCircularDer(cord);
+		break;
 	}
 }
 
-void Cubo::desarmarCubo() {
+void Cubo::desordenarCubo(int num) {
 	std::cout << "\nPor favor espere 15 segundos para desarmar el cubo\n";
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < num; i++) {
 		opcionesGiros(aleatorio(4,1), aleatorio(7, 4));
 		Sleep(700);
 	}
@@ -115,6 +171,43 @@ int Cubo::aleatorio(int valf, int vali) {
 		return aux / 2;
 	}
 	return aux;
+}
+
+void Cubo::sexyMove() {
+	opcionesGiros(2, 6);	//Rw'
+	opcionesGiros(2, 7);
+	opcionesGiros(3, 6);	//Dw
+	opcionesGiros(3, 7);
+	opcionesGiros(1, 6);	//Rw
+	opcionesGiros(1, 7);
+	opcionesGiros(4, 6);	//Dw'
+	opcionesGiros(4, 7);
+}
+
+void Cubo::permT() {
+	opcionesGiros(1, 6);	//Rw
+	opcionesGiros(1, 7);
+	opcionesGiros(4, 4);	//U
+	opcionesGiros(2, 6);	//Rw'
+	opcionesGiros(2, 7);
+	opcionesGiros(3, 4);	//U'
+	opcionesGiros(2, 6);	//Rw'
+	opcionesGiros(2, 7);
+	opcionesGiros(5, 3);	//F
+	opcionesGiros(1, 6);	//2Rw
+	opcionesGiros(1, 7);
+	opcionesGiros(1, 6);	
+	opcionesGiros(1, 7);
+	opcionesGiros(3, 4);	//U'
+	opcionesGiros(2, 6);	//Rw'
+	opcionesGiros(2, 7);
+	opcionesGiros(3, 4);	//U'
+	opcionesGiros(1, 6);	//Rw
+	opcionesGiros(1, 7);
+	opcionesGiros(4, 4);	//U
+	opcionesGiros(2, 6);	//Rw'
+	opcionesGiros(2, 7);
+	opcionesGiros(5, 3);    //F'
 }
 
 char** Cubo::getMatriz() {
