@@ -5,6 +5,7 @@
 
 #include "Matriz.h"
 #include "ListaCircular.h"
+#include "Archivo.h"
 
 class Cubo
 {
@@ -26,7 +27,10 @@ public:
 	void desordenarCubo(int);
 
 	void sexyMove();
-	void permT();
+	void permT();			//T permutaciones 
+	void comCentros();		//comutador de centros
+
+	void solucion(int);
 
 	char** getMatriz();
 	~Cubo();

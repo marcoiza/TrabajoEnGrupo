@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archivo.cpp" />
     <ClCompile Include="Cubo.cpp" />
     <ClCompile Include="Aplicativo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archivo.h" />
     <ClInclude Include="Cubo.h" />
     <ClInclude Include="ListaCircular.h" />
     <ClInclude Include="Matriz.h" />

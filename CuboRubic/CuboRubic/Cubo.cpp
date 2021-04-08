@@ -150,7 +150,7 @@ void Cubo::opcionesGiros(int op, int cord) {	//cord 4-7
 }
 
 void Cubo::desordenarCubo(int num) {
-	std::cout << "\nPor favor espere 15 segundos para desarmar el cubo\n";
+	std::cout << "\nPor favor espere 10 segundos para desordenar el cubo\n";
 	for (int i = 0; i < num; i++) {
 		opcionesGiros(aleatorio(4,1), aleatorio(7, 4));
 		Sleep(700);
@@ -208,6 +208,28 @@ void Cubo::permT() {
 	opcionesGiros(2, 6);	//Rw'
 	opcionesGiros(2, 7);
 	opcionesGiros(5, 3);    //F'
+}
+
+void Cubo::comCentros() {
+	opcionesGiros(1, 6);	//r
+	opcionesGiros(3, 4);	//U'
+	opcionesGiros(2, 4);	//l'
+	opcionesGiros(4, 4);	//U
+	opcionesGiros(2, 6);	//r'
+	opcionesGiros(3, 4);	//U'
+	opcionesGiros(1, 4);	//l
+}
+
+void Cubo::solucion(int num) {
+	Archivo ach;
+	ach.crearArchivo();
+	for (int i = 0; i < num; i++) {
+		sexyMove();
+		permT();
+		comCentros();
+		ach.escribirArchivo(matriz);
+	}
+	ach.cerrarArchivo();
 }
 
 char** Cubo::getMatriz() {
